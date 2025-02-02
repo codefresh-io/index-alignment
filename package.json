@@ -1,0 +1,39 @@
+{
+  "name": "index-alignment",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/codefresh-io/cf-migrations.git"
+  },
+  "packageManager": "yarn@4.5.2",
+  "scripts": {
+    "build": "rimraf ./dist && tsc --project tsconfig.build.json",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:cov": "vitest run --coverage"
+  },
+  "engines": {
+    "node": "^22"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.19.0",
+    "@stylistic/eslint-plugin": "^3.0.1",
+    "@types/node": "^22.12.0",
+    "commander": "^13.1.0",
+    "eslint": "^9.19.0",
+    "globals": "^15.14.0",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.22.0",
+    "vitest": "^3.0.4"
+  },
+  "dependencies": {
+    "mongodb": "^6.13.0"
+  }
+}
