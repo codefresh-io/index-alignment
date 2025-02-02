@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "lib": ["es2023"],
-    "module": "CommonJS",
-    "moduleResolution": "node10",
+    "module": "NodeNext",
+    "moduleResolution": "nodenext",
     "target": "ES2023",
     "declaration": true,
 
