@@ -1,0 +1,26 @@
+{
+  "databaseName": "pipeline-manager",
+  "collectionName": "step-metrics",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "metadata.name": 1,
+        "_id": 1
+      },
+      "name": "metadata.name_1__id_1"
+    },
+    {
+      "key": {
+        "metadata.name": 1
+      },
+      "name": "metadata.name_1",
+      "unique": true
+    }
+  ]
+}

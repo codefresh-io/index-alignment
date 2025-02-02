@@ -1,0 +1,25 @@
+{
+  "databaseName": "google_production",
+  "collectionName": "registryauthns",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "user": 1
+      },
+      "name": "user_1"
+    },
+    {
+      "key": {
+        "user": 1,
+        "expireAt": 1
+      },
+      "name": "user_1_expireAt_1"
+    }
+  ]
+}

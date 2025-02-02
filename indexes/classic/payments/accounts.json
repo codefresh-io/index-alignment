@@ -1,0 +1,43 @@
+{
+  "databaseName": "payments",
+  "collectionName": "accounts",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "plan.trial.trailing": 1
+      },
+      "name": "plan.trial.trailing_1"
+    },
+    {
+      "key": {
+        "plan.trial.trialEnd": 1
+      },
+      "name": "plan.trial.trialEnd_1"
+    },
+    {
+      "key": {
+        "stripe.customer_id": 1
+      },
+      "name": "stripe.customer_id_1"
+    },
+    {
+      "key": {
+        "name": 1
+      },
+      "name": "name_1"
+    },
+    {
+      "key": {
+        "plan.trial.trialing": 1,
+        "plan.trial.trialEnd": 1
+      },
+      "name": "plan.trial.trialing_1_plan.trial.trialEnd_1"
+    }
+  ]
+}

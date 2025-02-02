@@ -1,0 +1,46 @@
+{
+  "databaseName": "pipeline-manager",
+  "collectionName": "environment-activities",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "environmentId": 1,
+        "created_at": 1
+      },
+      "name": "environmentId_1_created_at_1"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "spec.revision": 1
+      },
+      "name": "accountId_1_spec.revision_1"
+    },
+    {
+      "key": {
+        "created_at": 1
+      },
+      "name": "created_at_1"
+    },
+    {
+      "key": {
+        "environmentId": 1,
+        "spec.historyId": 1
+      },
+      "name": "environmentId_1_spec.historyId_1"
+    },
+    {
+      "key": {
+        "environmentId": 1,
+        "spec.healthStatus": 1
+      },
+      "name": "environmentId_1_spec.healthStatus_1"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "databaseName": "runtime-environment-manager",
+  "collectionName": "runtime-environments-tags",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "runtimeEnvironmentName": 1
+      },
+      "name": "accountId_1_runtimeEnvironmentName_1",
+      "unique": true,
+      "sparse": true
+    }
+  ]
+}

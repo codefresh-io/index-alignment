@@ -1,0 +1,42 @@
+{
+  "databaseName": "pipeline-manager",
+  "collectionName": "gitops-app",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "_id": 1
+      },
+      "name": "metadata.accountId_1__id_1"
+    },
+    {
+      "key": {
+        "metadata.name": 1,
+        "metadata.accountId": 1
+      },
+      "name": "name_accId"
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "metadata.name": 1
+      },
+      "name": "accountId_metadata"
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "metadata.name": 1,
+        "spec.context": 1
+      },
+      "name": "uniq",
+      "unique": true
+    }
+  ]
+}

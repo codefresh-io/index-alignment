@@ -1,0 +1,52 @@
+{
+  "databaseName": "google_production",
+  "collectionName": "teams",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "refId": 1
+      },
+      "name": "refId_1"
+    },
+    {
+      "key": {
+        "users": 1
+      },
+      "name": "users_1"
+    },
+    {
+      "key": {
+        "name": 1
+      },
+      "name": "name_1"
+    },
+    {
+      "key": {
+        "name": 1,
+        "account": 1
+      },
+      "name": "name_1_account_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "account": 1,
+        "source": 1
+      },
+      "name": "account_1_source_1"
+    },
+    {
+      "key": {
+        "account": 1,
+        "type": 1
+      },
+      "name": "account_1_type_1"
+    }
+  ]
+}

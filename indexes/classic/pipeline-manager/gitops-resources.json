@@ -1,0 +1,21 @@
+{
+  "databaseName": "pipeline-manager",
+  "collectionName": "gitops-resources",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "environmentId": 1,
+        "activityId": 1
+      },
+      "name": "accountId_1_environmentId_1_activityId_1",
+      "unique": true
+    }
+  ]
+}

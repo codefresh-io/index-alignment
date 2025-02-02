@@ -1,0 +1,12 @@
+{
+  "databaseName": "accounts-referrals",
+  "collectionName": "objectlabs-system",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}

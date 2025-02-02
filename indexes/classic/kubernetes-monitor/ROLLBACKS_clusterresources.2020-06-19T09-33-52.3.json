@@ -1,0 +1,12 @@
+{
+  "databaseName": "kubernetes-monitor",
+  "collectionName": "ROLLBACKS_clusterresources.2020-06-19T09-33-52.3",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}

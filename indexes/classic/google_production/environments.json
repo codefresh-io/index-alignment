@@ -1,0 +1,18 @@
+{
+  "databaseName": "google_production",
+  "collectionName": "environments",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "account": 1
+      },
+      "name": "account_1"
+    }
+  ]
+}

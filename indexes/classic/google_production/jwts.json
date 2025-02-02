@@ -1,0 +1,25 @@
+{
+  "databaseName": "google_production",
+  "collectionName": "jwts",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "expiresAt": 1
+      },
+      "name": "expiresAt_1",
+      "expireAfterSeconds": 0
+    },
+    {
+      "key": {
+        "headerAndPayload": 1
+      },
+      "name": "headerAndPayload_1"
+    }
+  ]
+}

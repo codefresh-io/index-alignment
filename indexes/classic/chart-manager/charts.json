@@ -1,0 +1,29 @@
+{
+  "databaseName": "chart-manager",
+  "collectionName": "charts",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "created": 1
+      },
+      "name": "created_1",
+      "expireAfterSeconds": 60
+    },
+    {
+      "key": {
+        "account": 1,
+        "repository": 1,
+        "name": 1,
+        "version": 1
+      },
+      "name": "account_1_repository_1_name_1_version_1",
+      "unique": true
+    }
+  ]
+}

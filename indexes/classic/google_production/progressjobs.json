@@ -1,0 +1,30 @@
+{
+  "databaseName": "google_production",
+  "collectionName": "progressjobs",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "account": 1
+      },
+      "name": "account_1"
+    },
+    {
+      "key": {
+        "location.progressConfig": 1
+      },
+      "name": "location.progressConfig_1"
+    },
+    {
+      "key": {
+        "previousLocation.progressConfig": 1
+      },
+      "name": "previousLocation.progressConfig_1"
+    }
+  ]
+}

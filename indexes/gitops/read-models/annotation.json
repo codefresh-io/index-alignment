@@ -1,0 +1,89 @@
+{
+  "databaseName": "read-models",
+  "collectionName": "annotation",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "type": 1
+      },
+      "name": "type_1"
+    },
+    {
+      "key": {
+        "value": 1
+      },
+      "name": "value_1",
+      "partialFilterExpression": {
+        "type": "issue"
+      }
+    },
+    {
+      "key": {
+        "key": 1
+      },
+      "name": "key_1"
+    },
+    {
+      "key": {
+        "accountId": 1
+      },
+      "name": "accountId_1"
+    },
+    {
+      "key": {
+        "type": 1,
+        "value.committers.userName": 1
+      },
+      "name": "type_1_value.committers.userName_1",
+      "partialFilterExpression": {
+        "type": "pr"
+      }
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "entityId.id": 1,
+        "type": 1,
+        "entityType": 1
+      },
+      "name": "accountId_1_entityId.id_1_type_1_entityType_1"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "entityId": 1,
+        "type": 1
+      },
+      "name": "accountId_1_entityId_1_type_1"
+    },
+    {
+      "key": {
+        "classicId": 1
+      },
+      "name": "classicId_1"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "classicId": 1,
+        "type": 1
+      },
+      "name": "accountId_1_classicId_1_type_1"
+    },
+    {
+      "key": {
+        "value.valueType": 1
+      },
+      "name": "value.valueType_1",
+      "partialFilterExpression": {
+        "type": "generic"
+      }
+    }
+  ]
+}

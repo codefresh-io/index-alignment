@@ -1,0 +1,21 @@
+{
+  "databaseName": "google_production",
+  "collectionName": "argoagents",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "integration": 1,
+        "kind": 1,
+        "name": 1
+      },
+      "name": "accountId_1_integration_1_kind_1_name_1"
+    }
+  ]
+}

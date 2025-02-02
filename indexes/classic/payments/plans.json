@@ -1,0 +1,24 @@
+{
+  "databaseName": "payments",
+  "collectionName": "plans",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "trial.trailing": 1
+      },
+      "name": "trial.trailing_1"
+    },
+    {
+      "key": {
+        "trial.trialEnd": 1
+      },
+      "name": "trial.trialEnd_1"
+    }
+  ]
+}

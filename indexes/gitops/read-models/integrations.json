@@ -1,0 +1,58 @@
+{
+  "databaseName": "read-models",
+  "collectionName": "integrations",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "resources.entityId.name": 1
+      },
+      "name": "resources.entityId.name_1"
+    },
+    {
+      "key": {
+        "resources.entityId.name": 1,
+        "resources.entityId.kind": 1,
+        "resources.entityId.namespace": 1,
+        "resources.entityId.group": 1,
+        "resources.entityId.version": 1
+      },
+      "name": "resources.entityId.name_1_resources.entityId.kind_1_resources.entityId.namespace_1_resources.entityId.group_1_resources.entityId.version_1"
+    },
+    {
+      "key": {
+        "accountId": 1
+      },
+      "name": "accountId_1"
+    },
+    {
+      "key": {
+        "name": 1,
+        "type": 1,
+        "accountId": 1
+      },
+      "name": "name_1_type_1_accountId_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "type": 1
+      },
+      "name": "accountId_1_type_1"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "name": 1
+      },
+      "name": "accountId_1_name_1",
+      "unique": true
+    }
+  ]
+}
