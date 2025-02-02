@@ -25,7 +25,7 @@ export const dumpAllIndexes = async (options: DumpOptions): Promise<void> => {
     await mkdir(dbDirPath, { recursive: true });
     for (const collectionIndexes of dbIndexes.collections) {
       const collectionFilePath = resolve(dbDirPath, `${collectionIndexes.collectionName}.json`);
-      await writeFile(collectionFilePath, JSON.stringify(collectionIndexes, null, 2));
+      await writeFile(collectionFilePath, `${JSON.stringify(collectionIndexes, null, 2)}\n`);
     }
   }
   console.info(`✅ Dumped all indexes to "${dumpDirPath}"`);
