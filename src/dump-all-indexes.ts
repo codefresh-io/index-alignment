@@ -12,7 +12,7 @@ interface DumpOptions {
 export const dumpAllIndexes = async (options: DumpOptions): Promise<void> => {
   const { uri, path } = options;
   const dumpDirPath = isAbsolute(path) ? path : resolve(cwd(), path);
-  console.info(`Dumping all indexes to "${dumpDirPath}". Hidden indexes and databases "admin" and "system" will be ignored.`);
+  console.info(`Dumping all indexes to "${dumpDirPath}". Hidden indexes will be ignored. Only databases and collections with authorized access will be dumped.`);
 
   await mkdir(dumpDirPath, { recursive: true });
   const client = new MongoClient(uri);
