@@ -18,8 +18,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
-    "dump:classic": "node ./dist/index.js dump -p ./indexes/classic -u $MONGO_V1_URI",
-    "dump:gitops": "node ./dist/index.js dump -p ./indexes/gitops -u $MONGO_V2_URI",
+    "dump:classic": "rimraf ./indexes/classic && node ./dist/index.js dump -p ./indexes/classic -u $MONGO_V1_URI",
+    "dump:gitops": "rimraf ./indexes/gitops && node ./dist/index.js dump -p ./indexes/gitops -u $MONGO_V2_URI",
     "dump": "yarn dump:classic && yarn dump:gitops"
   },
   "engines": {
