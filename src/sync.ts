@@ -21,12 +21,15 @@ const getOrCreateCollection = async (db: Db, collectionName: string): Promise<Co
   return db.collection(collectionName);
 };
 
-const syncIndexes = async (collection: Collection, freeSlots: number, missingIndexes: Index[] = [], extraIndexes: Index[] = []): Promise<void> => {
+export const syncIndexes = async (collection: Collection, freeSlots: number, missing: Index[] = [], extra: Index[] = []): Promise<void> => {
+  const missingIndexes = [...missing];
+  const extraIndexes = [...extra];
+
   if (missingIndexes.length === 0 && extraIndexes.length === 0) return;
 
   if (missingIndexes.length > extraIndexes.length + freeSlots) {
     logger.stderr(`Not enough free slots to create ${missingIndexes.length} indexes. Consider manual sync`);
-    process.exit(1);
+    throw new Error('Not enough free slots');
   }
 
   if (missingIndexes.length === 0) {
