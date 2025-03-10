@@ -22,13 +22,6 @@
         "metadata.revision": 1
       },
       "name": "metadata.account_1_metadata.process_1_metadata.revision_1"
-    },
-    {
-      "key": {
-        "createdAt": 1
-      },
-      "name": "createdAt_1",
-      "expireAfterSeconds": 31536000
     }
   ]
 }

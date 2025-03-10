@@ -252,13 +252,6 @@
     },
     {
       "key": {
-        "created": 1
-      },
-      "name": "created_1",
-      "expireAfterSeconds": 31536000
-    },
-    {
-      "key": {
         "account": 1,
         "status": 1,
         "trigger": 1,
