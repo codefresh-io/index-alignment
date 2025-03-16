@@ -20,7 +20,7 @@ program
 
 program
   .command('sync')
-  .description('Sync indexes form a recommended dump with a target MongoDB instance')
+  .description('Sync indexes from a recommended dump with a target MongoDB instance')
   .requiredOption('-p, --product <product>', 'Codefresh product: classic | gitops')
   .requiredOption('-u, --uri <uri>', 'MongoDB URI')
   .option('-m --db-map [dump-db-name=target-db-name...]', 'Map databases in the dump to target databases')
