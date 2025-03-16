@@ -139,6 +139,10 @@ steps:
       - ${{CF_REVISION}}
       - ${{CF_BRANCH_TAG_NORMALIZED_LOWER_CASE}}
       - ${{CF_BRANCH_TAG_NORMALIZED_LOWER_CASE}}-${{CF_SHORT_REVISION}}
+    when:
+      steps:
+        - name: main_clone
+        - name: unit_tests
     scale:
       non-prod:
         tag: ${{PACKAGE_VERSION}}-${{CF_BRANCH_TAG_NORMALIZED_LOWER_CASE}}
@@ -197,15 +201,3 @@ steps:
           - name: check_linting
           - name: unit_tests
           - name: extract_package_version
-
-  deploy_to_npm:
-    stage: publish
-    type: npm-publish
-    arguments:
-      NPM_TOKEN: '${{NPM_TOKEN}}'
-      DIR: '${{CF_REPO_NAME}}'
-    when:
-      branch:
-        only: [ main, alpha ]
-      steps:
-        - name: create_github_release

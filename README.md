@@ -3,6 +3,11 @@
 ## Usage
 
 ```
+docker run quay.io/codefresh/index-alignment compare --product classic --uri "mongodb://127.0.0.1:27017" > drift.json
+
+```
+
+```
 Options:
   -h, --help         display help for command
 
