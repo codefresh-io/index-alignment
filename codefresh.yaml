@@ -118,16 +118,12 @@ steps:
   unit_tests:
     title: 'Run unit tests'
     stage: test
-    # bullseye required for MongoDB In-Memory Server
     image: node:${{NODE_VERSION}}-bullseye
     working_directory: ${{main_clone}}
     commands:
       - corepack enable
       - yarn install --frozen-lockfile
       - yarn test
-    environment:
-      # Version of MongoDB to be used by MongoDB In-Memory Server
-      - MONGOMS_VERSION=${{GLOBAL_MONGODB_V1_VERSION}}
     when:
       steps:
         - name: install_dependencies
@@ -136,11 +132,8 @@ steps:
     title: "Build and Push to quay"
     type: build
     stage: build
-    buildx:
-      builder:
-        driver: docker-container
+    buildx: true
     image_name: ${{IMAGE_NAME}}
-    platform: "linux/amd64,linux/arm64"
     registry: cf-quay
     tags:
       - ${{CF_REVISION}}
