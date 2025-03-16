@@ -9,7 +9,7 @@ Options:
 Commands:
   dump [options]     [Internal] Dump all indexes from a MongoDB instance
   compare [options]  Compare indexes from a target MongoDB instance with a recommended dump
-  sync [options]     Sync indexes form a recommended dump with a target MongoDB instance
+  sync [options]     Sync indexes from a recommended dump with a target MongoDB instance
   help [command]     display help for command
 ```
 
@@ -47,12 +47,13 @@ docker run index compare --product "classic" --uri "<db-uri>" --db-map google_pr
 > We strongly advice to not use this command against production DB. Instead, use `compare` command to get the drift, then consider manual index sync.
 
 
-Sync indexes form a recommended dump with a target MongoDB instance.
+Sync indexes from a recommended dump with a target MongoDB instance.
 
 ```
 Options:
   -p, --product <product>                       Codefresh product: classic | gitops
   -u, --uri <uri>                               MongoDB URI
+  -f --force                                    Create indexes even on heavy collections, which may take a while
   -m --db-map [dump-db-name=target-db-name...]  Map databases in the dump to target databases
   -h, --help                                    display help for command
 ```

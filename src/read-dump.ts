@@ -3,6 +3,7 @@ import { resolve } from 'node:path';
 import { cwd } from 'node:process';
 import { logger } from './logger.js';
 import type { CollectionIndexes, DatabaseIndexes, DbMapRaw, Product } from './types.js';
+import { getDumpToTargetDb } from './utils.js';
 
 const DumpDirs: Record<Product, string> = {
   classic: resolve(cwd(), 'indexes', 'classic'),
@@ -10,11 +11,7 @@ const DumpDirs: Record<Product, string> = {
 } as const;
 
 export const readDump = async (product: Product, dbMapRaw: DbMapRaw = []): Promise<DatabaseIndexes[]> => {
-  const dbMap = dbMapRaw.reduce((map, kv) => {
-    const [dumpDb, targetDb] = kv.split('=');
-    map.set(dumpDb!, targetDb!);
-    return map;
-  }, new Map<string, string>());
+  const dumpToTargetDb = getDumpToTargetDb(dbMapRaw);
 
   logger.stderr(`Reading desired indexes for ${product}`);
   const pathToDump = DumpDirs[product];
@@ -29,7 +26,7 @@ export const readDump = async (product: Product, dbMapRaw: DbMapRaw = []): Promi
     filePaths.map(async (filePath) => {
       const fileContent = await readFile(filePath, 'utf-8');
       const indexes = JSON.parse(fileContent) as CollectionIndexes;
-      indexes.databaseName = dbMap.get(indexes.databaseName) ?? indexes.databaseName;
+      indexes.databaseName = dumpToTargetDb.get(indexes.databaseName) ?? indexes.databaseName;
       return indexes;
     }),
   );

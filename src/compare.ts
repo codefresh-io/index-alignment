@@ -1,9 +1,11 @@
 import { MongoClient } from 'mongodb';
 import { deepStrictEqual } from 'node:assert';
+import { heavyCollections } from './config.js';
 import { getAllIndexes } from './get-indexes.js';
 import { logger } from './logger.js';
 import { readDump } from './read-dump.js';
 import type { CollectionDrift, CollectionIndexes, DatabaseDrift, DatabaseIndexes, DbMapRaw, FullDrift, Index, Product } from './types.js';
+import { getTargetToDumpDb } from './utils.js';
 
 interface CompareOptions {
   uri: string;
@@ -80,11 +82,16 @@ export const compare = async ({ product, uri, dbMap }: CompareOptions): Promise<
 
 export const compareCli = async (options: CompareOptions): Promise<void> => {
   logger.stderr(`Comparing indexes for "${options.product}"`);
+  const targetToDumpDb = getTargetToDumpDb(options.dbMap);
   const drift = await compare(options);
   for (const db of Object.values(drift.databases)) {
+    const dumpDbName = targetToDumpDb.get(db.databaseName) ?? db.databaseName;
     for (const col of Object.values(db.collections)) {
       if (!col.missingIndexes && !col.extraIndexes) continue;
       logger.stderr(`db "${db.databaseName}" collection "${col.collectionName}":`);
+      if (col.missingIndexes && heavyCollections[options.product][dumpDbName]?.includes(col.collectionName)) {
+        logger.stderr(`\t⚠️ Potentially heavy collection: ${col.collectionName}. Index creation may take a while.`);
+      }
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
       col.missingIndexes && logger.stderr(`\tMissing: ${col.missingIndexes.length}`);
       // eslint-disable-next-line @typescript-eslint/no-unused-expressions
