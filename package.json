@@ -8,7 +8,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/codefresh-io/cf-migrations.git"
+    "url": "git+https://github.com/codefresh-io/index-alignment.git"
   },
   "packageManager": "yarn@4.5.2",
   "scripts": {
