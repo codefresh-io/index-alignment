@@ -135,6 +135,7 @@ steps:
     buildx: true
     image_name: ${{IMAGE_NAME}}
     registry: cf-quay
+    platform: linux/amd64,linux/arm64
     tags:
       - ${{CF_REVISION}}
       - ${{CF_BRANCH_TAG_NORMALIZED_LOWER_CASE}}

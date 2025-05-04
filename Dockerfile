@@ -1,16 +1,15 @@
 FROM node:22-alpine AS base
 WORKDIR /app
+RUN corepack enable
 COPY package.json yarn.lock .yarnrc.yml ./
 
 FROM base AS build
 COPY . .
-RUN corepack enable \
-  && yarn workspaces focus --all \
+RUN yarn workspaces focus --all \
   && yarn build
 
 FROM base AS prod-dependencies
-RUN corepack enable \
-  && yarn workspaces focus --all --production
+RUN yarn workspaces focus --all --production
 
 FROM base AS production
 COPY --chown=node:node package.json .
