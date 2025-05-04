@@ -39,6 +39,6 @@
   },
   "dependencies": {
     "commander": "^13.1.0",
-    "mongodb": "^6.13.0"
+    "mongodb": "^6.16.0"
   }
 }
