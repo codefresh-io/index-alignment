@@ -49,16 +49,16 @@ docker run index compare --product "classic" --uri "<db-uri>" --db-map google_pr
 > [!CAUTION]
 > This command changes indexes in the target DB, which may have performance impact.
 >
-> We strongly advice to not use this command against production DB. Instead, use `compare` command to get the drift, then consider manual index sync.
+> We strongly advice to not use this command against production DB because of possible performance impact. Instead, use `compare` command to get the drift, then consider eliminating index drift manually during maintainance window.
 
 
-Sync indexes from a recommended dump with a target MongoDB instance.
+Sync indexes from a recommended dump with a target MongoDB instance. The command will fail if it is required to create indexes on heavily populated collections and the `--force` flag has not been specified
 
 ```
 Options:
   -p, --product <product>                       Codefresh product: classic | gitops
   -u, --uri <uri>                               MongoDB URI
-  -f --force                                    Create indexes even on heavy collections, which may take a while
+  -f --force                                    Create indexes even on heavily populated collections, which may take a while
   -m --db-map [dump-db-name=target-db-name...]  Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases
   -h, --help                                    display help for command
 ```
