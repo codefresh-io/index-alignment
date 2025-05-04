@@ -41,7 +41,7 @@ describe('syncIndexes', () => {
       await syncIndexes(mockCollection, freeSlots, missingIndexes, extraIndexes);
       throw new Error('Expected to throw');
     } catch (err) {
-      expect(err).toEqual(new Error('Not enough free slots'));
+      expect(err).toEqual(new Error('Not enough free slots to create indexes'));
       expect(mockCollection.createIndexes).not.toHaveBeenCalled();
       expect(mockCollection.createIndex).not.toHaveBeenCalled();
       expect(mockCollection.dropIndexes).not.toHaveBeenCalled();
