@@ -15,7 +15,7 @@ program
   .description('Compare indexes from a target MongoDB instance with a recommended dump')
   .requiredOption('-p, --product <product>', 'Codefresh product: classic | gitops')
   .requiredOption('-u, --uri <uri>', 'MongoDB URI')
-  .option('-m --db-map [dump-db-name=target-db-name...]', 'Map databases in the dump to target databases')
+  .option('-m --db-map [dump-db-name=target-db-name...]', 'Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases')
   .action(compareCli);
 
 program
@@ -24,7 +24,7 @@ program
   .requiredOption('-p, --product <product>', 'Codefresh product: classic | gitops')
   .requiredOption('-u, --uri <uri>', 'MongoDB URI')
   .option('-f --force', 'Create indexes even on heavy collections, which may take a while')
-  .option('-m --db-map [dump-db-name=target-db-name...]', 'Map databases in the dump to target databases')
+  .option('-m --db-map [dump-db-name=target-db-name...]', 'Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases')
   .action(sync);
 
 program.parse();

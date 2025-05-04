@@ -34,7 +34,7 @@ We recommend redirecting the output of `compare` command to JSON file.
 Options:
   -p, --product <product>                       Codefresh product: classic | gitops
   -u, --uri <uri>                               MongoDB URI
-  -m --db-map [dump-db-name=target-db-name...]  Map databases in the dump to target databases
+  -m --db-map [dump-db-name=target-db-name...]  Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases
   -h, --help                                    display help for command
 ```
 
@@ -59,6 +59,6 @@ Options:
   -p, --product <product>                       Codefresh product: classic | gitops
   -u, --uri <uri>                               MongoDB URI
   -f --force                                    Create indexes even on heavy collections, which may take a while
-  -m --db-map [dump-db-name=target-db-name...]  Map databases in the dump to target databases
+  -m --db-map [dump-db-name=target-db-name...]  Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases
   -h, --help                                    display help for command
 ```
