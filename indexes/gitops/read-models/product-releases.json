@@ -90,10 +90,10 @@
       },
       "name": "status_1",
       "collation": {
-        "locale": "en",
+        "locale": "en_US",
         "caseLevel": false,
         "caseFirst": "off",
-        "strength": 2,
+        "strength": 1,
         "numericOrdering": false,
         "alternate": "non-ignorable",
         "maxVariable": "punct",

@@ -4,12 +4,6 @@
   "indexes": [
     {
       "key": {
-        "_id": 1
-      },
-      "name": "_id_"
-    },
-    {
-      "key": {
         "createdAt": 1
       },
       "name": "createdAt_1",
@@ -21,6 +15,12 @@
         "_id": -1
       },
       "name": "LDRedisStoreVersion_1__id_-1"
+    },
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
     }
   ]
 }

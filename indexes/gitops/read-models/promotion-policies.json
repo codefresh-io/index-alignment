@@ -55,31 +55,6 @@
     },
     {
       "key": {
-        "metadata.accountId": 1,
-        "metadata.runtime": 1,
-        "metadata.cluster": 1,
-        "metadata.namespace": 1,
-        "metadata.group": 1,
-        "metadata.version": 1,
-        "metadata.kind": 1,
-        "metadata.name": 1
-      },
-      "name": "metadata.accountId_1_metadata.runtime_1_metadata.cluster_1_metadata.namespace_1_metadata.group_1_metadata.version_1_metadata.kind_1_metadata.name_1",
-      "unique": true,
-      "collation": {
-        "locale": "en_US",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
         "projects": 1
       },
       "name": "projects_1",
@@ -320,6 +295,25 @@
         "source.syncStartedAt": 1
       },
       "name": "source.syncStartedAt_1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "metadata.name": 1
+      },
+      "name": "metadata.accountId_1_metadata.name_1",
+      "unique": true,
       "collation": {
         "locale": "en_US",
         "caseLevel": false,

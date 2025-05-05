@@ -4,12 +4,6 @@
   "indexes": [
     {
       "key": {
-        "_id": 1
-      },
-      "name": "_id_"
-    },
-    {
-      "key": {
         "accountId": 1,
         "clusterId": 1,
         "uid": 1
@@ -52,6 +46,12 @@
         "markedForRemove": 1
       },
       "name": "general"
+    },
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
     }
   ]
 }

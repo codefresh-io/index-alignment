@@ -4,16 +4,16 @@
   "indexes": [
     {
       "key": {
-        "_id": 1
-      },
-      "name": "_id_"
-    },
-    {
-      "key": {
         "metadata.account": 1,
         "metadata.process": 1
       },
       "name": "metadata.account_1_metadata.process_1"
+    },
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
     }
   ]
 }

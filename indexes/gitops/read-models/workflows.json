@@ -521,11 +521,43 @@
     {
       "key": {
         "metadata.accountId": 1,
-        "pipelineGitSource": 1,
         "metadata.runtime": 1,
-        "_id": 1
+        "pipelineGitSource": 1,
+        "status.startedAt": -1,
+        "_id": -1
       },
-      "name": "metadata.accountId_1_pipelineGitSource_1_metadata.runtime_1__id_1"
+      "name": "metadata.accountId_1_metadata.runtime_1_pipelineGitSource_1_status.startedAt_-1__id_-1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "pipelineGitSource": 1,
+        "status.startedAt": -1,
+        "_id": -1
+      },
+      "name": "metadata.accountId_1_pipelineGitSource_1_status.startedAt_-1__id_-1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
     }
   ]
 }
