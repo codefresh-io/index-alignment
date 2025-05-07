@@ -1,4 +1,4 @@
-import { Collection, Db, Document, MongoClient, ObjectId } from 'mongodb';
+import { Collection, Db, Document, MongoClient } from 'mongodb';
 import { logger } from '../logger.js';
 
 interface StatsOptions {
@@ -10,7 +10,7 @@ interface CollectionStats {
   collectionName: string;
   stats: Document[];
   /** `null` if collection is empty */
-  oldestDocTimestamp: string | null;
+  oldestDocId: string | null;
 }
 
 interface DatabaseStats {
@@ -38,13 +38,8 @@ export const getCollectionStats = async (collection: Collection): Promise<Collec
     limit: 1,
     projection: { _id: 1 },
   });
-  let oldestDocTimestamp = null;
-  if (oldestDocument && ObjectId.isValid(oldestDocument._id)) {
-    oldestDocTimestamp = oldestDocument._id.getTimestamp().toISOString();
-  } else if (oldestDocument) {
-    oldestDocTimestamp = oldestDocument._id.toString();
-  }
-  return { databaseName, collectionName, stats, oldestDocTimestamp };
+  const oldestDocId = oldestDocument?._id.toString() ?? null;
+  return { databaseName, collectionName, stats, oldestDocId };
 };
 
 export const getDatabaseStats = async (db: Db): Promise<DatabaseStats> => {
