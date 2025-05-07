@@ -2,6 +2,7 @@ import { program } from 'commander';
 import { compareCli } from './compare.js';
 import { dumpAllIndexes } from './dump-all-indexes.js';
 import { sync } from './sync.js';
+import { stats } from './commands/stats.js';
 
 program
   .command('dump')
@@ -9,6 +10,12 @@ program
   .requiredOption('-p, --path <path>', 'Path to index dump')
   .requiredOption('-u, --uri <uri>', 'MongoDB URI')
   .action(dumpAllIndexes);
+
+program
+  .command('stats')
+  .description('Get stats for all collections from a MongoDB instance')
+  .requiredOption('-u, --uri <uri>', 'MongoDB URI')
+  .action(stats);
 
 program
   .command('compare')
