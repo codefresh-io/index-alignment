@@ -12,6 +12,7 @@ interface CollectionStats {
   /** `null` if collection is empty */
   oldestDocId: string | null;
   planCache: Document[];
+  indexStats: Document[];
 }
 
 interface DatabaseStats {
@@ -22,14 +23,16 @@ interface DatabaseStats {
 
 export const getCollectionStats = async (collection: Collection): Promise<CollectionStats> => {
   const { collectionName, dbName: databaseName } = collection;
-  const statsCursor = await collection.aggregate([
+  const statsCursor = collection.aggregate([
     {
       $collStats: {
         storageStats: {},
         count: {},
       },
     },
-  ]);
+  ], {
+    readPreference: 'primary',
+  });
   const stats: Document[] = [];
   for await (const doc of statsCursor) {
     stats.push(doc);
@@ -37,10 +40,24 @@ export const getCollectionStats = async (collection: Collection): Promise<Collec
 
   const planCacheCursor = collection.aggregate([
     { $planCacheStats: {} },
-  ]);
+  ], {
+    readPreference: 'primary',
+  });
   const planCache: Document[] = [];
   for await (const doc of planCacheCursor) {
     planCache.push(doc);
+  }
+
+  const indexStatsCursor = collection.aggregate([
+    {
+      $indexStats: {},
+    },
+  ], {
+    readPreference: 'primary',
+  });
+  const indexStats: Document[] = [];
+  for await (const doc of indexStatsCursor) {
+    indexStats.push(doc);
   }
 
   const oldestDocument = await collection.findOne({}, {
@@ -49,7 +66,7 @@ export const getCollectionStats = async (collection: Collection): Promise<Collec
     projection: { _id: 1 },
   });
   const oldestDocId = oldestDocument?._id.toString() ?? null;
-  return { databaseName, collectionName, stats, oldestDocId, planCache };
+  return { databaseName, collectionName, stats, oldestDocId, planCache, indexStats };
 };
 
 export const getDatabaseStats = async (db: Db): Promise<DatabaseStats> => {
