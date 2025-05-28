@@ -4,12 +4,6 @@
   "indexes": [
     {
       "key": {
-        "_id": 1
-      },
-      "name": "_id_"
-    },
-    {
-      "key": {
         "accountId": 1,
         "imageName": 1
       },
@@ -40,6 +34,12 @@
         "tag": 1
       },
       "name": "accountId_1_repositoryName_1_tag_1"
+    },
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
     }
   ]
 }
