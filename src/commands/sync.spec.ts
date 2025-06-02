@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { Collection } from 'mongodb';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { syncIndexes } from './sync.js';
-import type { Collection } from 'mongodb';
 
 vi.mock('./logger.js', () => {
   return {

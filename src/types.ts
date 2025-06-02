@@ -1,4 +1,4 @@
-import type { IndexDescription } from 'mongodb';
+import type { Document, IndexDescription } from 'mongodb';
 
 export type Product = 'classic' | 'gitops';
 
@@ -37,4 +37,45 @@ export interface DatabaseDrift {
 
 export interface FullDrift {
   databases: Record<string, DatabaseDrift>;
+}
+
+// Stats
+
+export interface CollectionStats {
+  databaseName: string;
+  collectionName: string;
+  stats: Document[];
+  /** `null` if collection is empty */
+  oldestDocId: string | null;
+  planCache: Document[];
+  indexStats: Document[];
+}
+
+export interface DatabaseStats {
+  databaseName: string;
+  collections: CollectionStats[];
+  stats: Document;
+}
+
+// Options
+export interface SyncOptions {
+  uri: string;
+  product: Product;
+  dbMap?: DbMapRaw;
+  force?: boolean;
+}
+
+export interface CompareOptions {
+  uri: string;
+  product: Product;
+  dbMap?: DbMapRaw;
+}
+
+export interface StatsOptions {
+  uri: string;
+}
+
+export interface DumpOptions {
+  uri: string;
+  path: string;
 }

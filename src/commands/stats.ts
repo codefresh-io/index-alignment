@@ -1,25 +1,6 @@
 import { Collection, Db, Document, MongoClient } from 'mongodb';
 import { logger } from '../logger.js';
-
-interface StatsOptions {
-  uri: string;
-}
-
-interface CollectionStats {
-  databaseName: string;
-  collectionName: string;
-  stats: Document[];
-  /** `null` if collection is empty */
-  oldestDocId: string | null;
-  planCache: Document[];
-  indexStats: Document[];
-}
-
-interface DatabaseStats {
-  databaseName: string;
-  collections: CollectionStats[];
-  stats: Document;
-}
+import type { CollectionStats, DatabaseStats, StatsOptions } from '../types.js';
 
 export const getCollectionStats = async (collection: Collection): Promise<CollectionStats> => {
   const { collectionName, dbName: databaseName } = collection;

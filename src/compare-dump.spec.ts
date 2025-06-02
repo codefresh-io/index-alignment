@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { isIndexEqual } from './compare.js';
+import { isIndexEqual } from './compare-dump.js';
 import { Index } from './types.js';
 
 describe('compare', () => {

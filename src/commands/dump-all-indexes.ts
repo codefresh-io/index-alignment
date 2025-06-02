@@ -2,13 +2,9 @@ import { MongoClient } from 'mongodb';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { isAbsolute, resolve } from 'node:path';
 import { cwd } from 'node:process';
-import { getAllIndexes } from './get-indexes.js';
-import { logger } from './logger.js';
-
-interface DumpOptions {
-  uri: string;
-  path: string;
-}
+import { getAllIndexes } from '../get-indexes.js';
+import { logger } from '../logger.js';
+import type { DumpOptions } from '../types.js';
 
 export const dumpAllIndexes = async (options: DumpOptions): Promise<void> => {
   const { uri, path } = options;

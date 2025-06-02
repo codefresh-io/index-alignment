@@ -1,17 +1,10 @@
 import { Collection, Db, MongoClient } from 'mongodb';
-import { compare } from './compare.js';
-import { heavyCollections, indexLimitPerCollection } from './config.js';
-import { getCollectionIndexes } from './get-indexes.js';
-import { logger } from './logger.js';
-import type { CollectionDrift, DatabaseDrift, DbMapRaw, Index, Product } from './types.js';
-import { getTargetToDumpDb } from './utils.js';
-
-interface SyncOptions {
-  uri: string;
-  product: Product;
-  dbMap?: DbMapRaw;
-  force?: boolean;
-}
+import { compareDump } from '../compare-dump.js';
+import { heavyCollections, indexLimitPerCollection } from '../config.js';
+import { getCollectionIndexes } from '../get-indexes.js';
+import { logger } from '../logger.js';
+import type { CollectionDrift, DatabaseDrift, Index, SyncOptions } from '../types.js';
+import { getTargetToDumpDb } from '../utils.js';
 
 const getOrCreateCollection = async (db: Db, collectionName: string): Promise<Collection> => {
   const collections = await db.listCollections({ name: collectionName }).toArray();
@@ -140,7 +133,7 @@ const syncDatabase = async (db: Db, drift: DatabaseDrift, options: SyncOptions):
 
 export const sync = async (options: SyncOptions): Promise<void> => {
   logger.stderr(`Syncing indexes for "${options.product}"`);
-  const drift = await compare(options);
+  const drift = await compareDump(options);
   const client = new MongoClient(options.uri);
   await client.connect();
   for (const [databaseName, databaseDrift] of Object.entries(drift.databases)) {

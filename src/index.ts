@@ -1,8 +1,8 @@
 import { program } from 'commander';
-import { compareCli } from './compare.js';
-import { dumpAllIndexes } from './dump-all-indexes.js';
-import { sync } from './sync.js';
+import { compare } from './commands/compare.js';
+import { dumpAllIndexes } from './commands/dump-all-indexes.js';
 import { stats } from './commands/stats.js';
+import { sync } from './commands/sync.js';
 
 program
   .command('dump')
@@ -23,7 +23,7 @@ program
   .requiredOption('-p, --product <product>', 'Codefresh product: classic | gitops')
   .requiredOption('-u, --uri <uri>', 'MongoDB URI')
   .option('-m --db-map [dump-db-name=target-db-name...]', 'Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases')
-  .action(compareCli);
+  .action(compare);
 
 program
   .command('sync')
