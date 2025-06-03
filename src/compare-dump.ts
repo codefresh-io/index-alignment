@@ -71,15 +71,9 @@ const compareCollections = (desired: CollectionIndexes, actual?: CollectionIndex
 
 const compareDatabases = (desired: DatabaseIndexes, actual?: DatabaseIndexes): DatabaseDrift => {
   const dbDrift: DatabaseDrift = { databaseName: desired.databaseName, collections: {} };
-  if (!actual) {
-    for (const { collectionName, indexes } of desired.collections) {
-      dbDrift.collections[collectionName] = { collectionName, missingIndexes: indexes };
-    }
-    return dbDrift;
-  }
 
   for (const desiredCol of desired.collections) {
-    const actualCol = actual.collections.find(actuaCol => actuaCol.collectionName === desiredCol.collectionName);
+    const actualCol = actual?.collections.find(actuaCol => actuaCol.collectionName === desiredCol.collectionName);
     const collectionResult = compareCollections(desiredCol, actualCol);
     if (collectionResult.missingIndexes || collectionResult.extraIndexes) {
       dbDrift.collections[desiredCol.collectionName] = collectionResult;
