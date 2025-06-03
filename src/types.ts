@@ -4,8 +4,8 @@ export type Product = 'classic' | 'gitops';
 
 export type Index = Omit<IndexDescription, 'v' | 'background'>;
 
-type DatabaseName = string;
-type CollectionName = string;
+export type DatabaseName = string;
+export type CollectionName = string;
 
 export interface CollectionIndexes {
   databaseName: DatabaseName;

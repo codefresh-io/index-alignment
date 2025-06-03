@@ -18,7 +18,7 @@ export const getCollectionIndexes = async (collection: Collection, options: GetI
 export const getDatabaseIndexes = async (db: Db, options: GetIndexesOptions = {}): Promise<DatabaseIndexes> => {
   const { databaseName } = db;
   const dbIndexes: DatabaseIndexes = { databaseName, collections: [] };
-  for await (const collection of db.listCollections({}, { nameOnly: true, authorizedCollections: true })) {
+  for await (const collection of db.listCollections({ type: 'collection' }, { nameOnly: true, authorizedCollections: true })) {
     const collectionIndexes = await getCollectionIndexes(db.collection(collection.name), options);
     dbIndexes.collections.push(collectionIndexes);
   }

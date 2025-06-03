@@ -1,11 +1,12 @@
-import type { IgnoreInAllCollections, IgnoreList } from '../types.js';
+import { isIndexEqual } from '../is-index-equal.js';
+import type { CollectionName, DatabaseName, IgnoreInAllCollections, IgnoreList, Index } from '../types.js';
 
 // TODO: Verify unique indexes in accounts collection.
 
 /**
  * These indexes should be ignored in all collections.
  */
-export const ignoreInAllCollections: IgnoreInAllCollections = [
+const ignoreInAllCollections: IgnoreInAllCollections = [
   // No need to create `_id` index in collections, it is created by default.
   {
     key: {
@@ -14,7 +15,7 @@ export const ignoreInAllCollections: IgnoreInAllCollections = [
   },
 ] as const;
 
-export const ignoreList: IgnoreList = {
+const ignoreList: IgnoreList = {
   'archive': {
     // 3rd party collection, not used by Codefresh
     'objectlabs-system': {
@@ -181,4 +182,35 @@ export const ignoreList: IgnoreList = {
       ignoreAllIndexes: true,
     },
   },
+};
+
+export const shouldIgnoreIndexInDump = (dumpDbName: DatabaseName, collectionName: CollectionName, dumpIndex: Index): boolean => {
+  // Check if the index should be ignored in all collections
+  if (ignoreInAllCollections.some(ignore => isIndexEqual(ignore, dumpIndex))) {
+    return true;
+  }
+
+  const ignoreCollection = ignoreList[dumpDbName]?.[collectionName];
+
+  // Check if all indexes should be ignored in the specific collection
+  if (ignoreCollection?.ignoreAllIndexes) {
+    return true;
+  }
+
+  // Check if the index is in the ignore list for the specific collection
+  if (ignoreCollection?.indexes.some(ignore => isIndexEqual(ignore, dumpIndex))) {
+    return true;
+  }
+
+  // Check if the index is a custom retention policy index
+  if (ignoreCollection?.indexes.some(ignore => isIndexEqual(ignore, {
+    ...dumpIndex,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expireAfterSeconds: 'ANY' as any,
+  }))) {
+    return true;
+  }
+
+  // If no conditions matched, the index should not be ignored
+  return false;
 };
