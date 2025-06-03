@@ -4,14 +4,17 @@ export type Product = 'classic' | 'gitops';
 
 export type Index = Omit<IndexDescription, 'v' | 'background'>;
 
+type DatabaseName = string;
+type CollectionName = string;
+
 export interface CollectionIndexes {
-  databaseName: string;
-  collectionName: string;
+  databaseName: DatabaseName;
+  collectionName: CollectionName;
   indexes: Index[];
 }
 
 export interface DatabaseIndexes {
-  databaseName: string;
+  databaseName: DatabaseName;
   collections: CollectionIndexes[];
 }
 
@@ -25,13 +28,13 @@ export type DbMapRaw = `${string}=${string}`[];
 export type DbMap = Map<string, string>;
 
 export interface CollectionDrift {
-  collectionName: string;
+  collectionName: CollectionName;
   missingIndexes?: Index[];
   extraIndexes?: Index[];
 }
 
 export interface DatabaseDrift {
-  databaseName: string;
+  databaseName: DatabaseName;
   collections: Record<string, CollectionDrift>;
 }
 
@@ -42,8 +45,8 @@ export interface FullDrift {
 // Stats
 
 export interface CollectionStats {
-  databaseName: string;
-  collectionName: string;
+  databaseName: DatabaseName;
+  collectionName: CollectionName;
   stats: Document[];
   /** `null` if collection is empty */
   oldestDocId: string | null;
@@ -52,7 +55,7 @@ export interface CollectionStats {
 }
 
 export interface DatabaseStats {
-  databaseName: string;
+  databaseName: DatabaseName;
   collections: CollectionStats[];
   stats: Document;
 }
@@ -79,3 +82,13 @@ export interface DumpOptions {
   uri: string;
   path: string;
 }
+
+// Ignore Lists
+
+export type IgnoreInAllCollections = Index[];
+
+export interface IgnoreInCollection extends CollectionIndexes {
+  ignoreAllIndexes?: boolean;
+}
+
+export type IgnoreList = Record<DatabaseName, Record<CollectionName, IgnoreInCollection>>;

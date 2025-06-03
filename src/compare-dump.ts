@@ -1,6 +1,8 @@
 import { MongoClient } from 'mongodb';
 import { deepStrictEqual } from 'node:assert';
 import { getAllIndexes } from './get-indexes.js';
+import * as dumpIgnore from './overrides/dump-ignore-list.js';
+import * as targetIgnore from './overrides/target-ignore-list.js';
 import { readDump } from './read-dump.js';
 import type { CollectionDrift, CollectionIndexes, CompareOptions, DatabaseDrift, DatabaseIndexes, FullDrift, Index } from './types.js';
 
@@ -39,13 +41,27 @@ export const isIndexEqual = (a: Index, b: Index): boolean => {
 
 const compareCollections = (desired: CollectionIndexes, actual?: CollectionIndexes): CollectionDrift => {
   const missingIndexes = desired.indexes.filter((desiredIndex) => {
+    // Skip indexes that should be ignored in the dump
+    if (dumpIgnore.ignoreInAllCollections.some(ignore => isIndexEqual(ignore, desiredIndex))) return false;
+    if (dumpIgnore.ignoreList[desired.databaseName]?.[desired.collectionName]?.ignoreAllIndexes) return false;
+    if (dumpIgnore.ignoreList[desired.databaseName]?.[desired.collectionName]?.indexes
+      .some(ignore => isIndexEqual(ignore, desiredIndex))) return false;
+
     const match = actual?.indexes.find(actualIndex => isIndexEqual(desiredIndex, actualIndex));
     return !match;
   });
+
   const extraIndexes = actual?.indexes.filter((actualIndex) => {
+    // Skip indexes that should be ignored in the target
+    if (targetIgnore.ignoreInAllCollections.some(ignore => isIndexEqual(ignore, actualIndex))) return false;
+    if (targetIgnore.ignoreList[actual.databaseName]?.[actual.collectionName]?.ignoreAllIndexes) return false;
+    if (targetIgnore.ignoreList[actual.databaseName]?.[actual.collectionName]?.indexes
+      .some(ignore => isIndexEqual(ignore, actualIndex))) return false;
+
     const match = desired.indexes.find(desiredIndex => isIndexEqual(desiredIndex, actualIndex));
     return !match;
   });
+
   return {
     collectionName: desired.collectionName,
     ...missingIndexes.length && { missingIndexes },
