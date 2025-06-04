@@ -147,6 +147,27 @@ const ignoreList: IgnoreList = {
       indexes: [],
       ignoreAllIndexes: true,
     },
+    // Payments service is not delivered with On-Premise
+    'accounts': {
+      databaseName: 'payments',
+      collectionName: 'accounts',
+      indexes: [],
+      ignoreAllIndexes: true,
+    },
+    // Payments service is not delivered with On-Premise
+    'baseplans': {
+      databaseName: 'payments',
+      collectionName: 'baseplans',
+      indexes: [],
+      ignoreAllIndexes: true,
+    },
+    // Payments service is not delivered with On-Premise
+    'plans': {
+      databaseName: 'payments',
+      collectionName: 'plans',
+      indexes: [],
+      ignoreAllIndexes: true,
+    },
   },
   'pipeline-manager': {
     // 3rd party collection, not used by Codefresh
