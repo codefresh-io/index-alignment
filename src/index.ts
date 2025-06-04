@@ -3,6 +3,7 @@ import { compare } from './commands/compare.js';
 import { dumpAllIndexes } from './commands/dump-all-indexes.js';
 import { stats } from './commands/stats.js';
 import { sync } from './commands/sync.js';
+import { defaultDbMap } from './config.js';
 
 program
   .command('dump')
@@ -22,7 +23,11 @@ program
   .description('Compare indexes from a target MongoDB instance with a recommended dump')
   .requiredOption('-p, --product <product>', 'Codefresh product: classic | gitops')
   .requiredOption('-u, --uri <uri>', 'MongoDB URI')
-  .option('-m --db-map [dump-db-name=target-db-name...]', 'Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases', ['google_production=codefresh'])
+  .option(
+    '-m --db-map [dump-db-name=target-db-name...]',
+    'Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases',
+    defaultDbMap,
+  )
   .action(compare);
 
 program
@@ -31,7 +36,11 @@ program
   .requiredOption('-p, --product <product>', 'Codefresh product: classic | gitops')
   .requiredOption('-u, --uri <uri>', 'MongoDB URI')
   .option('-f --force', 'Create indexes even on heavily populated collections, which may take a while')
-  .option('-m --db-map [dump-db-name=target-db-name...]', 'Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases', ['google_production=codefresh'])
+  .option(
+    '-m --db-map [dump-db-name=target-db-name...]',
+    'Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases',
+    defaultDbMap,
+  )
   .action(sync);
 
 program.parse();

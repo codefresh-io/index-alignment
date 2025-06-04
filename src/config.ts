@@ -18,3 +18,5 @@ export const heavyCollections: Record<Product, Record<string, string[]>> = {
 } as const;
 
 export const indexLimitPerCollection = 64 as const;
+
+export const defaultDbMap = ['google_production=codefresh', 'chart-manager=charts-manager'];
