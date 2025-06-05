@@ -1,7 +1,7 @@
 import { isIndexEqual } from '../is-index-equal.js';
 import type { CollectionName, DatabaseName, IgnoreInAllCollections, IgnoreList, Index } from '../types.js';
 
-// TODO: Verify unique indexes in accounts collection.
+// TODO: Verify unique indexes, they should probably be ignored for now.
 
 /**
  * These indexes should be ignored in all collections.

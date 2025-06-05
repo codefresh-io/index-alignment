@@ -1,6 +1,8 @@
 import { isIndexEqual } from '../is-index-equal.js';
 import type { CollectionName, DatabaseName, IgnoreInAllCollections, IgnoreList, Index } from '../types.js';
 
+// TODO: Verify unique indexes, they should probably be ignored for now.
+
 /**
  * These indexes should be ignored in all collections.
  */
@@ -68,6 +70,15 @@ export const shouldIgnoreIndexInTarget = (dumpDbName: DatabaseName, collectionNa
 
   // Check if the index is in the ignore list for the specific collection
   if (ignoreCollection?.indexes.some(ignore => isIndexEqual(ignore, targetIndex))) {
+    return true;
+  }
+
+  // Check if the index is a custom retention policy index
+  if (ignoreCollection?.indexes.some(ignore => isIndexEqual(ignore, {
+    ...targetIndex,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    expireAfterSeconds: 'ANY' as any,
+  }))) {
     return true;
   }
 
