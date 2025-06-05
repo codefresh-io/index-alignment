@@ -24,6 +24,13 @@ const ignoreList: IgnoreList = {
       indexes: [],
       ignoreAllIndexes: true,
     },
+    // Payments service is not delivered with On-Premise
+    'payments-accounts-archive': {
+      databaseName: 'archive',
+      collectionName: 'payments-accounts-archive',
+      indexes: [],
+      ignoreAllIndexes: true,
+    },
   },
   'chart-manager': {
     // 3rd party collection, not used by Codefresh
