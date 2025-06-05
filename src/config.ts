@@ -13,6 +13,8 @@ export const heavyCollections: Record<Product, Record<string, string[]>> = {
       'event-payloads',
       'images-layers',
       'releases',
+      'images-binaries',
+      'replicasets',
     ],
   },
 } as const;
