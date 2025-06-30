@@ -2,19 +2,20 @@
 
 ## Usage
 
+```shell
+docker run quay.io/codefresh/index-alignment:<version> --help
 ```
-docker run quay.io/codefresh/index-alignment compare --product classic --uri "mongodb://127.0.0.1:27017" > drift.json
-
-```
-
 ```
 Options:
   -h, --help         display help for command
 
 Commands:
   dump [options]     [Internal] Dump all indexes from a MongoDB instance
+  stats [options]    Get stats for all collections from a MongoDB instance
   compare [options]  Compare indexes from a target MongoDB instance with a recommended dump
-  sync [options]     Sync indexes from a recommended dump with a target MongoDB instance
+  sync [options]     Sync indexes from a recommended dump with a target MongoDB instance. The command
+                     will fail if it is required to create indexes on heavily populated collections and
+                     the `--force` flag has not been specified
   help [command]     display help for command
 ```
 
@@ -30,18 +31,54 @@ All logs are written to the STDERR stream, so they can be easily separated from 
 
 We recommend redirecting the output of `compare` command to JSON file.
 
+> [!IMPORTANT]
+> The credentials under which the command is run must have read access to all databases controlled by Codefresh.
+
 ```
 Options:
   -p, --product <product>                       Codefresh product: classic | gitops
   -u, --uri <uri>                               MongoDB URI
-  -m --db-map [dump-db-name=target-db-name...]  Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases
+  -m --db-map [dump-db-name=target-db-name...]  Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases (default: ["google_production=codefresh","chart-manager=charts-manager","kubernetes-monitor=k8s-monitor"])
   -h, --help                                    display help for command
 ```
 
 Example:
 
-```sh
-docker run index compare --product "classic" --uri "<db-uri>" --db-map google_production=local > drift.json
+```shell
+docker run quay.io/codefresh/index-alignment:<version> compare --product "classic" --uri "<db-uri>" > classic-diff.json
+
+docker run quay.io/codefresh/index-alignment:<version> compare --product "gitops" --uri "<db-uri>" > gitops-diff.json
+```
+
+## `stats`
+
+Get stats for all collections from a MongoDB instance. Following commands will be executed:
+
+* `dbStats` command ([doc](https://www.mongodb.com/docs/v5.0/reference/command/dbStats/));
+
+* `$collStats` aggregation ([doc](https://www.mongodb.com/docs/v5.0/reference/operator/aggregation/collStats/));
+
+* `$planCacheStats` aggregation ([doc](https://www.mongodb.com/docs/v5.0/reference/operator/aggregation/plancachestats/));
+
+* queries `_id` of the oldest doc in each collection.
+
+> [!IMPORTANT]
+> The credentials under which the command is run must have permissions to execute the commands specified above.
+
+All logs are written to the STDERR stream, so they can be easily separated from the actual output, which is written to STDOUT.
+
+We recommend redirecting the output of `stats` command to JSON file.
+
+```
+Options:
+  -u, --uri <uri>  MongoDB URI
+  -h, --help       display help for command
+```
+
+Example:
+
+```shell
+docker run quay.io/codefresh/index-alignment:<version> stats --uri "<db-uri>" > db-stats.json
 ```
 
 ## `sync`
@@ -49,7 +86,7 @@ docker run index compare --product "classic" --uri "<db-uri>" --db-map google_pr
 > [!CAUTION]
 > This command changes indexes in the target DB, which may have performance impact.
 >
-> We strongly advice to not use this command against production DB because of possible performance impact. Instead, use `compare` command to get the drift, then consider eliminating index drift manually during maintainance window.
+> We strongly advice to NOT use this command against production DB because of possible performance impact. Instead, use `compare` command to get the diff, then consider eliminating index diff manually during maintainance window.
 
 
 Sync indexes from a recommended dump with a target MongoDB instance. The command will fail if it is required to create indexes on heavily populated collections and the `--force` flag has not been specified
@@ -59,6 +96,6 @@ Options:
   -p, --product <product>                       Codefresh product: classic | gitops
   -u, --uri <uri>                               MongoDB URI
   -f --force                                    Create indexes even on heavily populated collections, which may take a while
-  -m --db-map [dump-db-name=target-db-name...]  Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases
+  -m --db-map [dump-db-name=target-db-name...]  Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases (default: ["google_production=codefresh","chart-manager=charts-manager","kubernetes-monitor=k8s-monitor"])
   -h, --help                                    display help for command
 ```
