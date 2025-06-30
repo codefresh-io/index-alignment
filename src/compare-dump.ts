@@ -4,11 +4,11 @@ import { isIndexEqual } from './is-index-equal.js';
 import { shouldIgnoreIndexInDump } from './overrides/should-ignore-index-in-dump.js';
 
 import { readDump } from './read-dump.js';
-import type { CollectionDrift, CollectionIndexes, CompareOptions, DatabaseDrift, DatabaseIndexes, DbMapRaw, FullDrift } from './types.js';
+import type { CollectionDiff, CollectionIndexes, CompareOptions, DatabaseDiff, DatabaseIndexes, DbMapRaw, FullDiff } from './types.js';
 import { shouldIgnoreIndexInTarget } from './overrides/should-ignore-index-in-target.js';
 import { getTargetToDumpDb } from './utils.js';
 
-const compareCollections = (desired: CollectionIndexes, actual?: CollectionIndexes, dbMap?: DbMapRaw): CollectionDrift => {
+const compareCollections = (desired: CollectionIndexes, actual?: CollectionIndexes, dbMap?: DbMapRaw): CollectionDiff => {
   const dumpDbName = getTargetToDumpDb(dbMap).get(desired.databaseName) ?? desired.databaseName;
 
   const missingIndexes = desired.indexes.filter((desiredIndex) => {
@@ -34,33 +34,33 @@ const compareCollections = (desired: CollectionIndexes, actual?: CollectionIndex
   };
 };
 
-const compareDatabases = (desired: DatabaseIndexes, actual?: DatabaseIndexes, dbMap?: DbMapRaw): DatabaseDrift => {
-  const dbDrift: DatabaseDrift = { databaseName: desired.databaseName, collections: {} };
+const compareDatabases = (desired: DatabaseIndexes, actual?: DatabaseIndexes, dbMap?: DbMapRaw): DatabaseDiff => {
+  const dbDiff: DatabaseDiff = { databaseName: desired.databaseName, collections: {} };
 
   for (const desiredCol of desired.collections) {
     const actualCol = actual?.collections.find(actuaCol => actuaCol.collectionName === desiredCol.collectionName);
     const collectionResult = compareCollections(desiredCol, actualCol, dbMap);
     if (collectionResult.missingIndexes || collectionResult.extraIndexes) {
-      dbDrift.collections[desiredCol.collectionName] = collectionResult;
+      dbDiff.collections[desiredCol.collectionName] = collectionResult;
     }
   }
-  return dbDrift;
+  return dbDiff;
 };
 
-export const compareDump = async ({ product, uri, dbMap }: CompareOptions): Promise<FullDrift> => {
+export const compareDump = async ({ product, uri, dbMap }: CompareOptions): Promise<FullDiff> => {
   const desired = await readDump(product, dbMap);
   const client = new MongoClient(uri);
   await client.connect();
   const actual = await getAllIndexes(client);
 
-  const drift: FullDrift = { databases: {} };
+  const diff: FullDiff = { databases: {} };
   for (const desiredDb of desired) {
     const actualDb = actual.find(db => db.databaseName === desiredDb.databaseName);
-    const dbDrift = compareDatabases(desiredDb, actualDb, dbMap);
-    if (Object.keys(dbDrift.collections).length !== 0) {
-      drift.databases[desiredDb.databaseName] = dbDrift;
+    const dbDiff = compareDatabases(desiredDb, actualDb, dbMap);
+    if (Object.keys(dbDiff.collections).length !== 0) {
+      diff.databases[desiredDb.databaseName] = dbDiff;
     }
   }
   await client.close();
-  return drift;
+  return diff;
 };

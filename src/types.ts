@@ -27,19 +27,19 @@ export interface GetIndexesOptions {
 export type DbMapRaw = `${string}=${string}`[];
 export type DbMap = Map<string, string>;
 
-export interface CollectionDrift {
+export interface CollectionDiff {
   collectionName: CollectionName;
   missingIndexes?: Index[];
   extraIndexes?: Index[];
 }
 
-export interface DatabaseDrift {
+export interface DatabaseDiff {
   databaseName: DatabaseName;
-  collections: Record<string, CollectionDrift>;
+  collections: Record<string, CollectionDiff>;
 }
 
-export interface FullDrift {
-  databases: Record<string, DatabaseDrift>;
+export interface FullDiff {
+  databases: Record<string, DatabaseDiff>;
 }
 
 // Stats

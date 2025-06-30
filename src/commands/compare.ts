@@ -7,8 +7,8 @@ import { getTargetToDumpDb } from '../utils.js';
 export const compare = async (options: CompareOptions): Promise<void> => {
   logger.stderr(`Comparing indexes for "${options.product}"`);
   const targetToDumpDb = getTargetToDumpDb(options.dbMap);
-  const drift = await compareDump(options);
-  for (const db of Object.values(drift.databases)) {
+  const diff = await compareDump(options);
+  for (const db of Object.values(diff.databases)) {
     const dumpDbName = targetToDumpDb.get(db.databaseName) ?? db.databaseName;
     for (const col of Object.values(db.collections)) {
       if (!col.missingIndexes && !col.extraIndexes) continue;
@@ -23,5 +23,5 @@ export const compare = async (options: CompareOptions): Promise<void> => {
       logger.stderr('');
     }
   }
-  logger.stdout(JSON.stringify(drift, null, 2));
+  logger.stdout(JSON.stringify(diff, null, 2));
 };

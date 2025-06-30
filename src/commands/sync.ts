@@ -3,7 +3,7 @@ import { compareDump } from '../compare-dump.js';
 import { heavyCollections, indexLimitPerCollection } from '../config.js';
 import { getCollectionIndexes } from '../get-indexes.js';
 import { logger } from '../logger.js';
-import type { CollectionDrift, DatabaseDrift, Index, SyncOptions } from '../types.js';
+import type { CollectionDiff, DatabaseDiff, Index, SyncOptions } from '../types.js';
 import { getTargetToDumpDb } from '../utils.js';
 
 const getOrCreateCollection = async (db: Db, collectionName: string): Promise<Collection> => {
@@ -93,8 +93,8 @@ export const syncIndexes = async (collection: Collection, freeSlots: number, mis
   return syncIndexes(collection, newFreeSlots, missingIndexes, extraIndexes);
 };
 
-const syncCollection = async (collection: Collection, drift: CollectionDrift, options: SyncOptions): Promise<void> => {
-  const { collectionName, missingIndexes, extraIndexes } = drift;
+const syncCollection = async (collection: Collection, diff: CollectionDiff, options: SyncOptions): Promise<void> => {
+  const { collectionName, missingIndexes, extraIndexes } = diff;
   logger.stderr(`Syncing collection "${collectionName}"`);
   if (missingIndexes) logger.stderr(`Going to create ${missingIndexes.length} indexes`);
   if (extraIndexes) logger.stderr(`Going to drop ${extraIndexes.length} indexes`);
@@ -121,24 +121,24 @@ const syncCollection = async (collection: Collection, drift: CollectionDrift, op
   logger.stderr(`Collection "${collectionName}" synced`);
 };
 
-const syncDatabase = async (db: Db, drift: DatabaseDrift, options: SyncOptions): Promise<void> => {
-  const { databaseName, collections } = drift;
+const syncDatabase = async (db: Db, diff: DatabaseDiff, options: SyncOptions): Promise<void> => {
+  const { databaseName, collections } = diff;
   logger.stderr(`Syncing database "${databaseName}"`);
-  for (const [collectionName, collectionDrift] of Object.entries(collections)) {
+  for (const [collectionName, collectionDiff] of Object.entries(collections)) {
     const collection = await getOrCreateCollection(db, collectionName);
-    await syncCollection(collection, collectionDrift, options);
+    await syncCollection(collection, collectionDiff, options);
   }
   logger.stderr(`Database "${databaseName}" synced`);
 };
 
 export const sync = async (options: SyncOptions): Promise<void> => {
   logger.stderr(`Syncing indexes for "${options.product}"`);
-  const drift = await compareDump(options);
+  const diff = await compareDump(options);
   const client = new MongoClient(options.uri);
   await client.connect();
-  for (const [databaseName, databaseDrift] of Object.entries(drift.databases)) {
+  for (const [databaseName, databaseDiff] of Object.entries(diff.databases)) {
     const db = client.db(databaseName);
-    await syncDatabase(db, databaseDrift, options);
+    await syncDatabase(db, databaseDiff, options);
   }
   await client.close();
 };
