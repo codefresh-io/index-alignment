@@ -1,0 +1,12 @@
+{
+  "databaseName": "google_production",
+  "collectionName": "imagetags",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}

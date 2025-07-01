@@ -1,0 +1,204 @@
+version: '1.0'
+
+mode: parallel
+
+stages:
+  - clone
+  - prepare
+  - test
+  - build
+  - publish
+
+steps:
+  main_clone:
+    stage: clone
+    type: git-clone
+    repo: '${{CF_REPO_OWNER}}/${{CF_REPO_NAME}}'
+    revision: '${{CF_REVISION}}'
+
+  extract_package_version:
+    stage: prepare
+    title: 'Extract package version'
+    image: quay.io/codefresh/codefresh-shell:0.0.14
+    working_directory: ${{main_clone}}
+    shell: bash
+    commands:
+    - |
+      export PACKAGE_VERSION=$(jq -r '.version' package.json)
+      if [[ -n "${PACKAGE_VERSION}" ]]; then
+        echo "Package version is detected: ${PACKAGE_VERSION}"
+      else
+        echo "Package version was not detected. Please, make sure it's specified in 'package.json'." >&2
+        exit 1
+      fi
+      cf_export PACKAGE_VERSION
+    when:
+      steps:
+        - name: main_clone
+    
+  validate_package_version:
+    stage: prepare
+    title: 'Validate package version'
+    image: quay.io/codefresh/codefresh-shell:0.0.14
+    working_directory: ${{main_clone}}
+    shell: bash
+    commands:
+      - |
+        git show origin/main:package.json > package.main.json
+        export UPSTREAM_PACKAGE_VERSION=$( jq -r '.version' package.main.json)
+        echo "Version to merge: $PACKAGE_VERSION"
+        echo "Upstream version: $UPSTREAM_PACKAGE_VERSION"
+        semver-cli greater $PACKAGE_VERSION $UPSTREAM_PACKAGE_VERSION
+    when:
+      steps:
+        - name: extract_package_version
+      branch:
+        ignore: [ main, alpha ]
+
+  export_github_token:
+    stage: prepare
+    image: quay.io/codefresh/codefresh-shell:0.0.14
+    shell: bash
+    commands:
+      - source /scripts/get-gh-token.sh
+      - cf_export GITHUB_TOKEN=$GITHUB_TOKEN --mask
+    when:
+      steps:
+        - name: main_clone
+
+  specify_node_image:
+    stage: prepare
+    image: quay.io/codefresh/codefresh-shell:0.0.14
+    shell: bash
+    working_directory: ${{main_clone}}
+    commands:
+      - |-
+        export NVMRC="$(cat .nvmrc | head -n 1)"
+        export NODE_VERSION="${NVMRC//v/}"
+
+        if [[ -n "${NODE_VERSION}" ]]; then
+          echo "Node version is detected from './.nvmrc': ${NODE_VERSION}"
+        else
+          echo "Node version was not detected. Please, make sure a valid './.nvmrc' file exists in the repo root." >&2
+          exit 1
+        fi
+
+        cf_export NODE_VERSION
+        export NODE_IMAGE="node:${NODE_VERSION}-alpine"
+        echo "Node image is: ${NODE_IMAGE}"
+        cf_export NODE_IMAGE
+    when:
+      steps:
+        - name: main_clone
+
+  install_dependencies:
+    stage: prepare
+    image: ${{NODE_IMAGE}}
+    working_directory: ${{main_clone}}
+    commands:
+      - corepack enable
+      - yarn install --frozen-lockfile
+    when:
+      steps:
+        - name: specify_node_image
+
+  check_linting:
+    title: 'Check linting'
+    stage: test
+    image: ${{NODE_IMAGE}}
+    working_directory: ${{main_clone}}
+    commands:
+      - corepack enable
+      - yarn lint
+    when:
+      steps:
+        - name: install_dependencies
+
+
+  unit_tests:
+    title: 'Run unit tests'
+    stage: test
+    image: node:${{NODE_VERSION}}-bullseye
+    working_directory: ${{main_clone}}
+    commands:
+      - corepack enable
+      - yarn install --frozen-lockfile
+      - yarn test
+    when:
+      steps:
+        - name: install_dependencies
+
+  build:
+    title: "Build and Push to quay"
+    type: build
+    stage: build
+    buildx: true
+    image_name: ${{IMAGE_NAME}}
+    registry: cf-quay
+    platform: linux/amd64,linux/arm64
+    tags:
+      - ${{CF_REVISION}}
+      - ${{CF_BRANCH_TAG_NORMALIZED_LOWER_CASE}}
+      - ${{CF_BRANCH_TAG_NORMALIZED_LOWER_CASE}}-${{CF_SHORT_REVISION}}
+    when:
+      steps:
+        - name: main_clone
+        - name: unit_tests
+    scale:
+      non-prod:
+        tag: ${{PACKAGE_VERSION}}-${{CF_BRANCH_TAG_NORMALIZED_LOWER_CASE}}
+        when:
+          branch:
+            ignore: [ main, alpha ]
+      prod:
+        tag: ${{PACKAGE_VERSION}}
+        when:
+          branch:
+            only: [ main, alpha ]
+
+  check_release_version:
+    stage: publish
+    image: codefresh/build-cli
+    working_directory: ${{main_clone}}
+    commands:
+      - |-
+        RELEASE_ID="$(curl --fail -s -H "Authorization: token ${{GITHUB_TOKEN}}" https://api.github.com/repos/codefresh-io/${{CF_REPO_NAME}}/releases/tags/v${{PACKAGE_VERSION}} | jq .id)"
+        echo "Release id: ${RELEASE_ID}"
+
+        if [[ -n "${RELEASE_ID}" ]]; then
+          echo "Release with name \"${{PACKAGE_VERSION}}\" already exists!" >&2
+          exit 1
+        else
+          echo "Package version is valid: ${{PACKAGE_VERSION}}"
+        fi
+    when:
+      steps:
+        all:
+          - name: extract_package_version
+          - name: export_github_token
+
+  create_github_release:
+    stage: publish
+    image: codefresh/build-cli
+    commands:
+      - |-
+        curl \
+          --fail \
+          -X POST \
+          -H "Authorization: token ${{GITHUB_TOKEN}}" \
+          -H "Content-Type: application/json" \
+          -d '{
+            "tag_name": "v${{PACKAGE_VERSION}}",
+            "target_commitish": "${{CF_REVISION}}",
+            "name": "v${{PACKAGE_VERSION}}"
+          }' \
+          https://api.github.com/repos/codefresh-io/${{CF_REPO_NAME}}/releases
+    when:
+      branch:
+        only: [ main, alpha ]
+      steps:
+        all:
+          - name: build
+          - name: check_linting
+          - name: unit_tests
+          - name: extract_package_version
