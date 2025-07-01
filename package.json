@@ -1,6 +1,6 @@
 {
   "name": "index-alignment",
-  "version": "0.0.2",
+  "version": "2.8-0.0.2",
   "main": "dist/index.js",
   "private": true,
   "type": "module",
