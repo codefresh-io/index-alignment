@@ -58,6 +58,8 @@ Get stats for all collections from a MongoDB instance. Following commands will b
 
 * `$collStats` aggregation ([doc](https://www.mongodb.com/docs/v5.0/reference/operator/aggregation/collStats/));
 
+* `$indexStats` aggregation ([doc](https://www.mongodb.com/docs/v5.0/reference/operator/aggregation/indexStats/));
+
 * `$planCacheStats` aggregation ([doc](https://www.mongodb.com/docs/v5.0/reference/operator/aggregation/plancachestats/));
 
 * queries `_id` of the oldest doc in each collection.
