@@ -4,6 +4,12 @@
   "indexes": [
     {
       "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
         "accountId": 1,
         "projectName": 1
       },
@@ -23,12 +29,6 @@
         "tags": 1
       },
       "name": "accountId_1_tags_1"
-    },
-    {
-      "key": {
-        "_id": 1
-      },
-      "name": "_id_"
     }
   ]
 }

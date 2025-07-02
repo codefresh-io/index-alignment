@@ -4,26 +4,9 @@
   "indexes": [
     {
       "key": {
-        "metadata.name": 1
+        "_id": 1
       },
-      "name": "metadata.name_1",
-      "collation": {
-        "locale": "en_US",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
-        "metadata.labels": 1
-      },
-      "name": "metadata.labels_1",
+      "name": "_id_",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -56,56 +39,12 @@
     },
     {
       "key": {
-        "source.syncStartedAt": 1
+        "metadata.name": 1
       },
-      "name": "source.syncStartedAt_1",
+      "name": "metadata.name_1",
       "partialFilterExpression": {
         "type": "gitSourceNotification"
       },
-      "collation": {
-        "locale": "en_US",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
-        "source.gitSource": 1
-      },
-      "name": "source.gitSource_1",
-      "partialFilterExpression": {
-        "type": "gitSourceNotification"
-      },
-      "collation": {
-        "locale": "en_US",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
-        "metadata.accountId": 1,
-        "metadata.runtime": 1,
-        "metadata.name": 1,
-        "metadata.namespace": 1,
-        "metadata.group": 1,
-        "metadata.version": 1,
-        "metadata.kind": 1,
-        "state": 1
-      },
-      "name": "metadata.accountId_1_metadata.runtime_1_metadata.name_1_metadata.namespace_1_metadata.group_1_metadata.version_1_metadata.kind_1_state_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -145,9 +84,29 @@
     },
     {
       "key": {
-        "source.gitSourceUID": 1
+        "metadata.labels": 1
       },
-      "name": "source.gitSourceUID_1",
+      "name": "metadata.labels_1",
+      "partialFilterExpression": {
+        "type": "gitSourceNotification"
+      },
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "source.gitSource": 1
+      },
+      "name": "source.gitSource_1",
       "partialFilterExpression": {
         "type": "gitSourceNotification"
       },
@@ -185,31 +144,43 @@
     },
     {
       "key": {
-        "id": 1,
-        "type": 1
+        "source.gitSourceUID": 1
       },
-      "name": "id_1_type_1"
+      "name": "source.gitSourceUID_1",
+      "partialFilterExpression": {
+        "type": "gitSourceNotification"
+      },
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
     },
     {
       "key": {
-        "accountId": 1,
-        "timestamp": -1,
-        "_id": -1
+        "source.syncStartedAt": 1
       },
-      "name": "accountId_1_timestamp_-1__id_-1"
-    },
-    {
-      "key": {
-        "state": 1,
-        "timestamp": 1
+      "name": "source.syncStartedAt_1",
+      "partialFilterExpression": {
+        "type": "gitSourceNotification"
       },
-      "name": "state_1_timestamp_1"
-    },
-    {
-      "key": {
-        "_id": 1
-      },
-      "name": "_id_"
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
     }
   ]
 }

@@ -1,0 +1,19 @@
+{
+  "databaseName": "codefresh",
+  "collectionName": "providers",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "clientType": 1
+      },
+      "name": "clientType_1",
+      "unique": true
+    }
+  ]
+}

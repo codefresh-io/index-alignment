@@ -1,0 +1,19 @@
+{
+  "databaseName": "codefresh",
+  "collectionName": "onboardings",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "user": 1
+      },
+      "name": "user_1",
+      "unique": true
+    }
+  ]
+}

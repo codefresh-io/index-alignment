@@ -1,0 +1,36 @@
+{
+  "databaseName": "codefresh",
+  "collectionName": "serviceobjs",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "account": 1
+      },
+      "name": "account_1"
+    },
+    {
+      "key": {
+        "name": 1,
+        "account": 1
+      },
+      "name": "name_1_account_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "account": 1,
+        "scm.owner.name": 1,
+        "scm.name": 1,
+        "context": 1
+      },
+      "name": "account_1_scm.owner.name_1_scm.name_1_context_1",
+      "unique": true
+    }
+  ]
+}

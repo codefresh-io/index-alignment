@@ -4,17 +4,17 @@
   "indexes": [
     {
       "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
         "accountid": 1,
         "selector": 1
       },
       "name": "accountid_1_selector_1",
       "unique": true
-    },
-    {
-      "key": {
-        "_id": 1
-      },
-      "name": "_id_"
     }
   ]
 }

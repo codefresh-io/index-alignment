@@ -1,0 +1,27 @@
+{
+  "databaseName": "codefresh",
+  "collectionName": "pagination-sessions",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "sessionId": 1,
+        "source": 1,
+        "account": 1
+      },
+      "name": "sessionId_1_source_1_account_1"
+    },
+    {
+      "key": {
+        "updatedAt": 1
+      },
+      "name": "updatedAt_1",
+      "expireAfterSeconds": 86400
+    }
+  ]
+}

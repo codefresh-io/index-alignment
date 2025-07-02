@@ -1,0 +1,86 @@
+{
+  "databaseName": "codefresh",
+  "collectionName": "users",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "userName": 1
+      },
+      "name": "userName_1",
+      "unique": true,
+      "sparse": true
+    },
+    {
+      "key": {
+        "email": 1
+      },
+      "name": "email_1",
+      "unique": true,
+      "sparse": true
+    },
+    {
+      "key": {
+        "notificationEmail": 1
+      },
+      "name": "notificationEmail_1",
+      "unique": true,
+      "sparse": true
+    },
+    {
+      "key": {
+        "last_login_date": 1
+      },
+      "name": "last_login_date_1"
+    },
+    {
+      "key": {
+        "userName": 1,
+        "provider.name": 1
+      },
+      "name": "userName_1_provider.name_1"
+    },
+    {
+      "key": {
+        "_id": 1,
+        "status": 1
+      },
+      "name": "_id_1_status_1"
+    },
+    {
+      "key": {
+        "account": 1,
+        "status": 1
+      },
+      "name": "account_1_status_1"
+    },
+    {
+      "key": {
+        "logins.idp": 1,
+        "logins.userId": 1
+      },
+      "name": "logins.idp_1_logins.userId_1",
+      "sparse": true
+    },
+    {
+      "key": {
+        "account": 1,
+        "isService": 1
+      },
+      "name": "account_1_isService_1"
+    },
+    {
+      "key": {
+        "logins.idp": 1,
+        "logins.userName": 1
+      },
+      "name": "logins.idp_1_logins.userName_1",
+      "sparse": true
+    }
+  ]
+}

@@ -4,6 +4,12 @@
   "indexes": [
     {
       "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
         "applicationMetadata.name": 1
       },
       "name": "applicationMetadata.name_1"
@@ -16,39 +22,29 @@
     },
     {
       "key": {
-        "application.prs.type": 1
-      },
-      "name": "application.prs.type_1"
-    },
-    {
-      "key": {
-        "application.prs.key": 1
-      },
-      "name": "application.prs.key_1"
-    },
-    {
-      "key": {
-        "application.prs.accountId": 1
-      },
-      "name": "application.prs.accountId_1"
-    },
-    {
-      "key": {
         "application.issues.type": 1
       },
       "name": "application.issues.type_1"
     },
     {
       "key": {
-        "application.issues.key": 1
+        "application.prs.type": 1
       },
-      "name": "application.issues.key_1"
+      "name": "application.prs.type_1"
     },
     {
       "key": {
-        "application.issues.accountId": 1
+        "applicationMetadata.accountId": 1,
+        "applicationMetadata.runtime": 1,
+        "applicationMetadata.name": 1,
+        "applicationMetadata.namespace": 1,
+        "applicationMetadata.group": 1,
+        "applicationMetadata.version": 1,
+        "applicationMetadata.kind": 1,
+        "historyId": -1
       },
-      "name": "application.issues.accountId_1"
+      "name": "applicationMetadata.accountId_1_applicationMetadata.runtime_1_applicationMetadata.name_1_applicationMetadata.namespace_1_applicationMetadata.group_1_applicationMetadata.version_1_applicationMetadata.kind_1_historyId_-1",
+      "unique": true
     },
     {
       "key": {
@@ -79,20 +75,6 @@
         "application.committers.userName": 1
       },
       "name": "applicationMetadata.accountId_1_applicationMetadata.runtime_1_applicationMetadata.name_1_applicationMetadata.namespace_1_application.committers.userName_1"
-    },
-    {
-      "key": {
-        "applicationMetadata.accountId": 1,
-        "applicationMetadata.runtime": 1,
-        "applicationMetadata.name": 1,
-        "applicationMetadata.namespace": 1,
-        "applicationMetadata.group": 1,
-        "applicationMetadata.version": 1,
-        "applicationMetadata.kind": 1,
-        "historyId": -1
-      },
-      "name": "applicationMetadata.accountId_1_applicationMetadata.runtime_1_applicationMetadata.name_1_applicationMetadata.namespace_1_applicationMetadata.group_1_applicationMetadata.version_1_applicationMetadata.kind_1_historyId_-1",
-      "unique": true
     },
     {
       "key": {
@@ -156,12 +138,6 @@
         "applicationMetadata.accountId": 1
       },
       "name": "application.status.revision_1_applicationMetadata.name_1_applicationMetadata.accountId_1"
-    },
-    {
-      "key": {
-        "_id": 1
-      },
-      "name": "_id_"
     }
   ]
 }

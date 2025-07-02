@@ -4,18 +4,9 @@
   "indexes": [
     {
       "key": {
-        "metadata.accountId": 1,
         "_id": 1
       },
-      "name": "metadata.accountId_1__id_1"
-    },
-    {
-      "key": {
-        "metadata.name": 1,
-        "metadata.accountId": 1
-      },
-      "name": "metadata.name_1_metadata.accountId_1",
-      "unique": true
+      "name": "_id_"
     },
     {
       "key": {
@@ -37,18 +28,17 @@
     {
       "key": {
         "metadata.accountId": 1,
-        "metadata.name": 1,
-        "spec.server": 1,
-        "spec.namespace": 1
+        "_id": 1
       },
-      "name": "metadata.accountId_1_metadata.name_1_spec.server_1_spec.namespace_1",
-      "unique": true
+      "name": "metadata.accountId_1__id_1"
     },
     {
       "key": {
-        "_id": 1
+        "metadata.name": 1,
+        "metadata.accountId": 1
       },
-      "name": "_id_"
+      "name": "metadata.name_1_metadata.accountId_1",
+      "unique": true
     }
   ]
 }

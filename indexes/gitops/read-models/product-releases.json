@@ -4,6 +4,42 @@
   "indexes": [
     {
       "key": {
+        "_id": 1
+      },
+      "name": "_id_",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "productName": 1,
+        "triggerCommit.sha": 1
+      },
+      "name": "accountId_1_productName_1_triggerCommit.sha_1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
         "accountId": 1,
         "productName": 1
       },
@@ -44,33 +80,14 @@
     {
       "key": {
         "accountId": 1,
-        "productName": 1,
-        "triggerCommit.sha": 1
+        "updatedAt": -1
       },
-      "name": "accountId_1_productName_1_triggerCommit.sha_1",
+      "name": "accountId_1_updatedAt_-1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
         "caseFirst": "off",
         "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
-        "accountId": 1,
-        "updatedAt": -1
-      },
-      "name": "accountId_1_updatedAt_-1",
-      "collation": {
-        "locale": "en",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 2,
         "numericOrdering": false,
         "alternate": "non-ignorable",
         "maxVariable": "punct",
@@ -94,12 +111,6 @@
         "normalization": false,
         "backwards": false
       }
-    },
-    {
-      "key": {
-        "_id": 1
-      },
-      "name": "_id_"
     }
   ]
 }

@@ -1,0 +1,48 @@
+{
+  "databaseName": "codefresh",
+  "collectionName": "abacs",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "account": 1,
+        "action": 1,
+        "team": 1,
+        "resource": 1,
+        "tags": 1
+      },
+      "name": "account_1_action_1_team_1_resource_1_tags_1"
+    },
+    {
+      "key": {
+        "account": 1,
+        "action": 1,
+        "executionContext": 1,
+        "resource": 1,
+        "tags": 1
+      },
+      "name": "account_1_action_1_executionContext_1_resource_1_tags_1"
+    },
+    {
+      "key": {
+        "resource": 1,
+        "action": 1,
+        "team": 1
+      },
+      "name": "resource_1_action_1_team_1"
+    },
+    {
+      "key": {
+        "resource": 1,
+        "action": 1,
+        "executionContext": 1
+      },
+      "name": "resource_1_action_1_executionContext_1"
+    }
+  ]
+}

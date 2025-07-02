@@ -1,0 +1,46 @@
+{
+  "databaseName": "codefresh",
+  "collectionName": "accounts",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "name": 1
+      },
+      "name": "name_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "cfcrRepositoryPath": 1
+      },
+      "name": "cfcrRepositoryPath_1",
+      "unique": true,
+      "sparse": true
+    },
+    {
+      "key": {
+        "codefreshEnv": 1
+      },
+      "name": "codefreshEnv_1"
+    },
+    {
+      "key": {
+        "paymentPlan.isWiredTransfer": 1
+      },
+      "name": "paymentPlan.isWiredTransfer_1"
+    },
+    {
+      "key": {
+        "_id": 1,
+        "admins": 1
+      },
+      "name": "_id_1_admins_1"
+    }
+  ]
+}

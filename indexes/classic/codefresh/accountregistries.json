@@ -1,0 +1,12 @@
+{
+  "databaseName": "codefresh",
+  "collectionName": "accountregistries",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}

@@ -4,9 +4,9 @@
   "indexes": [
     {
       "key": {
-        "__passiveReferencedBy.name": 1
+        "_id": 1
       },
-      "name": "__passiveReferencedBy.name_1",
+      "name": "_id_",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -21,13 +21,9 @@
     },
     {
       "key": {
-        "__passiveReferencedBy.name": 1,
-        "__passiveReferencedBy.kind": 1,
-        "__passiveReferencedBy.namespace": 1,
-        "__passiveReferencedBy.group": 1,
-        "__passiveReferencedBy.version": 1
+        "metadata.name": 1
       },
-      "name": "__passiveReferencedBy.name_1___passiveReferencedBy.kind_1___passiveReferencedBy.namespace_1___passiveReferencedBy.group_1___passiveReferencedBy.version_1",
+      "name": "metadata.name_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -42,9 +38,9 @@
     },
     {
       "key": {
-        "__passiveReferences.name": 1
+        "metadata.labels": 1
       },
-      "name": "__passiveReferences.name_1",
+      "name": "metadata.labels_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -59,13 +55,18 @@
     },
     {
       "key": {
-        "__passiveReferences.name": 1,
-        "__passiveReferences.kind": 1,
-        "__passiveReferences.namespace": 1,
-        "__passiveReferences.group": 1,
-        "__passiveReferences.version": 1
+        "metadata.accountId": 1,
+        "metadata.runtime": 1,
+        "metadata.cluster": 1,
+        "metadata.namespace": 1,
+        "metadata.group": 1,
+        "metadata.version": 1,
+        "metadata.kind": 1,
+        "metadata.name": 1,
+        "metadata.uid": 1
       },
-      "name": "__passiveReferences.name_1___passiveReferences.kind_1___passiveReferences.namespace_1___passiveReferences.group_1___passiveReferences.version_1",
+      "name": "metadata.accountId_1_metadata.runtime_1_metadata.cluster_1_metadata.namespace_1_metadata.group_1_metadata.version_1_metadata.kind_1_metadata.name_1_metadata.uid_1",
+      "unique": true,
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -80,9 +81,9 @@
     },
     {
       "key": {
-        "__inferredReferencedBy.name": 1
+        "errs.reference.name": 1
       },
-      "name": "__inferredReferencedBy.name_1",
+      "name": "errs.reference.name_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -97,13 +98,47 @@
     },
     {
       "key": {
-        "__inferredReferencedBy.name": 1,
-        "__inferredReferencedBy.kind": 1,
-        "__inferredReferencedBy.namespace": 1,
-        "__inferredReferencedBy.group": 1,
-        "__inferredReferencedBy.version": 1
+        "errs.reference.name": 1,
+        "errs.reference.kind": 1,
+        "errs.reference.namespace": 1,
+        "errs.reference.group": 1,
+        "errs.reference.version": 1
       },
-      "name": "__inferredReferencedBy.name_1___inferredReferencedBy.kind_1___inferredReferencedBy.namespace_1___inferredReferencedBy.group_1___inferredReferencedBy.version_1",
+      "name": "errs.reference.name_1_errs.reference.kind_1_errs.reference.namespace_1_errs.reference.group_1_errs.reference.version_1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "projects": 1
+      },
+      "name": "projects_1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "updatedAt": 1
+      },
+      "name": "updatedAt_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -156,9 +191,9 @@
     },
     {
       "key": {
-        "projects": 1
+        "__inferredReferencedBy.name": 1
       },
-      "name": "projects_1",
+      "name": "__inferredReferencedBy.name_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -173,9 +208,13 @@
     },
     {
       "key": {
-        "metadata.name": 1
+        "__inferredReferencedBy.name": 1,
+        "__inferredReferencedBy.kind": 1,
+        "__inferredReferencedBy.namespace": 1,
+        "__inferredReferencedBy.group": 1,
+        "__inferredReferencedBy.version": 1
       },
-      "name": "metadata.name_1",
+      "name": "__inferredReferencedBy.name_1___inferredReferencedBy.kind_1___inferredReferencedBy.namespace_1___inferredReferencedBy.group_1___inferredReferencedBy.version_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -190,9 +229,9 @@
     },
     {
       "key": {
-        "metadata.labels": 1
+        "__passiveReferences.name": 1
       },
-      "name": "metadata.labels_1",
+      "name": "__passiveReferences.name_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -207,9 +246,13 @@
     },
     {
       "key": {
-        "metadata.accountId": 1
+        "__passiveReferences.name": 1,
+        "__passiveReferences.kind": 1,
+        "__passiveReferences.namespace": 1,
+        "__passiveReferences.group": 1,
+        "__passiveReferences.version": 1
       },
-      "name": "metadata.accountId_1",
+      "name": "__passiveReferences.name_1___passiveReferences.kind_1___passiveReferences.namespace_1___passiveReferences.group_1___passiveReferences.version_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -224,9 +267,9 @@
     },
     {
       "key": {
-        "pipeline.name": 1
+        "__passiveReferencedBy.name": 1
       },
-      "name": "pipeline.name_1",
+      "name": "__passiveReferencedBy.name_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -241,13 +284,13 @@
     },
     {
       "key": {
-        "pipeline.name": 1,
-        "pipeline.kind": 1,
-        "pipeline.namespace": 1,
-        "pipeline.group": 1,
-        "pipeline.version": 1
+        "__passiveReferencedBy.name": 1,
+        "__passiveReferencedBy.kind": 1,
+        "__passiveReferencedBy.namespace": 1,
+        "__passiveReferencedBy.group": 1,
+        "__passiveReferencedBy.version": 1
       },
-      "name": "pipeline.name_1_pipeline.kind_1_pipeline.namespace_1_pipeline.group_1_pipeline.version_1",
+      "name": "__passiveReferencedBy.name_1___passiveReferencedBy.kind_1___passiveReferencedBy.namespace_1___passiveReferencedBy.group_1___passiveReferencedBy.version_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -300,61 +343,9 @@
     },
     {
       "key": {
-        "updatedAt": 1
+        "status.phase": 1
       },
-      "name": "updatedAt_1",
-      "collation": {
-        "locale": "en_US",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
-        "status.phase": 1,
-        "metadata.timestamp": 1
-      },
-      "name": "status.phase_1_metadata.timestamp_1",
-      "collation": {
-        "locale": "en_US",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
-        "pipelineGitSource": 1
-      },
-      "name": "pipelineGitSource_1",
-      "collation": {
-        "locale": "en_US",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
-        "playground": 1
-      },
-      "name": "playground_1",
+      "name": "status.phase_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -386,49 +377,6 @@
     },
     {
       "key": {
-        "status.phase": 1
-      },
-      "name": "status.phase_1",
-      "collation": {
-        "locale": "en_US",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
-        "metadata.accountId": 1,
-        "metadata.runtime": 1,
-        "metadata.cluster": 1,
-        "metadata.namespace": 1,
-        "metadata.group": 1,
-        "metadata.version": 1,
-        "metadata.kind": 1,
-        "metadata.name": 1,
-        "metadata.uid": 1
-      },
-      "name": "metadata.accountId_1_metadata.runtime_1_metadata.cluster_1_metadata.namespace_1_metadata.group_1_metadata.version_1_metadata.kind_1_metadata.name_1_metadata.uid_1",
-      "unique": true,
-      "collation": {
-        "locale": "en_US",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
         "originatedFrom": 1
       },
       "name": "originatedFrom_1",
@@ -446,19 +394,48 @@
     },
     {
       "key": {
-        "createdAt": 1
+        "pipeline.name": 1
       },
-      "name": "createdAt_1",
-      "expireAfterSeconds": 31536000
+      "name": "pipeline.name_1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
     },
     {
       "key": {
-        "metadata.accountId": 1,
         "pipeline.name": 1,
-        "status.startedAt": -1,
-        "_id": -1
+        "pipeline.kind": 1,
+        "pipeline.namespace": 1,
+        "pipeline.group": 1,
+        "pipeline.version": 1
       },
-      "name": "findAllPipelineWorkflows",
+      "name": "pipeline.name_1_pipeline.kind_1_pipeline.namespace_1_pipeline.group_1_pipeline.version_1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "status.phase": 1,
+        "metadata.timestamp": 1
+      },
+      "name": "status.phase_1_metadata.timestamp_1",
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -495,11 +472,6 @@
         "metadata.parentWfUID": 1
       },
       "name": "metadata.accountId_1_metadata.parentWfUID_1",
-      "partialFilterExpression": {
-        "metadata.parentWfUID": {
-          "$exists": true
-        }
-      },
       "collation": {
         "locale": "en_US",
         "caseLevel": false,
@@ -517,47 +489,25 @@
         "metadata.accountId": 1,
         "metadata.runtime": 1,
         "pipelineGitSource": 1,
-        "status.startedAt": -1,
-        "_id": -1
-      },
-      "name": "metadata.accountId_1_metadata.runtime_1_pipelineGitSource_1_status.startedAt_-1__id_-1",
-      "collation": {
-        "locale": "en_US",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
-        "metadata.accountId": 1,
-        "pipelineGitSource": 1,
-        "status.startedAt": -1,
-        "_id": -1
-      },
-      "name": "metadata.accountId_1_pipelineGitSource_1_status.startedAt_-1__id_-1",
-      "collation": {
-        "locale": "en_US",
-        "caseLevel": false,
-        "caseFirst": "off",
-        "strength": 1,
-        "numericOrdering": false,
-        "alternate": "non-ignorable",
-        "maxVariable": "punct",
-        "normalization": false,
-        "backwards": false
-      }
-    },
-    {
-      "key": {
         "_id": 1
       },
-      "name": "_id_"
+      "name": "metadata.accountId_1_metadata.runtime_1_pipelineGitSource_1__id_1",
+      "partialFilterExpression": {
+        "pipelineGitSource": {
+          "$exists": true
+        }
+      },
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
     }
   ]
 }

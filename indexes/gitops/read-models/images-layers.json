@@ -4,6 +4,12 @@
   "indexes": [
     {
       "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
         "accountId": 1,
         "image": 1
       },
@@ -16,12 +22,6 @@
       },
       "name": "image_1",
       "unique": true
-    },
-    {
-      "key": {
-        "_id": 1
-      },
-      "name": "_id_"
     }
   ]
 }

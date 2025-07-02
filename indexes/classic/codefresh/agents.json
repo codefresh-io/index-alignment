@@ -1,0 +1,26 @@
+{
+  "databaseName": "codefresh",
+  "collectionName": "agents",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "name": 1
+      },
+      "name": "name_1"
+    },
+    {
+      "key": {
+        "name": 1,
+        "account": 1
+      },
+      "name": "name_1_account_1",
+      "unique": true
+    }
+  ]
+}

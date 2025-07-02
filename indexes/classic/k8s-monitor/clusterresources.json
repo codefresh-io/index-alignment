@@ -1,0 +1,49 @@
+{
+  "databaseName": "k8s-monitor",
+  "collectionName": "clusterresources",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "clusterId": 1,
+        "uid": 1
+      },
+      "name": "accountId_1_clusterId_1_uid_1"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "clusterId": 1,
+        "data.kind": 1,
+        "data.namespace": 1,
+        "data.labels": 1
+      },
+      "name": "accountId_1_clusterId_1_data.kind_1_data.namespace_1_data.labels_1"
+    },
+    {
+      "key": {
+        "accounts.accountId": 1,
+        "accounts.clusterId": 1,
+        "data.kind": 1,
+        "data.namespace": 1,
+        "data.labels": 1
+      },
+      "name": "accounts.accountId_1_accounts.clusterId_1_data.kind_1_data.namespace_1_data.labels_1"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "clusterId": 1,
+        "data.kind": 1,
+        "markedForRemove": 1
+      },
+      "name": "accountId_1_clusterId_1_data.kind_1_markedForRemove_1"
+    }
+  ]
+}
