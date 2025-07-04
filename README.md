@@ -40,6 +40,15 @@ We recommend redirecting the output of `compare` command to JSON file.
 Options:
   -p, --product <product>                       Codefresh product: classic | gitops
   -u, --uri <uri>                               MongoDB URI
+  --tls                                         Use TLS for the connection. If you are using a self-signed certificate,
+                                                you may also need to specify "--tlsCAFile" and/or
+                                                "--tlsCertificateKeyFile" (default: false)
+  --tlsInsecure                                 Allow insecure TLS connections (do not validate CA) (default: false)
+  --tlsCAFile <path>                            Specifies the location of a local .pem file that contains the root
+                                                certificate chain from the Certificate Authority. This file is used to
+                                                validate the certificate presented by the mongod/mongos instance
+  --tlsCertificateKeyFile <path>                Specifies the location of a local .pem file that contains either the
+                                                client's TLS/SSL certificate and key
   -m --db-map [dump-db-name=target-db-name...]  Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases (default: ["google_production=codefresh","chart-manager=charts-manager","kubernetes-monitor=k8s-monitor"])
   -h, --help                                    display help for command
 ```
@@ -75,8 +84,17 @@ We recommend redirecting the output of `stats` command to JSON file.
 
 ```
 Options:
-  -u, --uri <uri>  MongoDB URI
-  -h, --help       display help for command
+  -u, --uri <uri>                               MongoDB URI
+  --tls                                         Use TLS for the connection. If you are using a self-signed certificate,
+                                                you may also need to specify "--tlsCAFile" and/or
+                                                "--tlsCertificateKeyFile" (default: false)
+  --tlsInsecure                                 Allow insecure TLS connections (do not validate CA) (default: false)
+  --tlsCAFile <path>                            Specifies the location of a local .pem file that contains the root
+                                                certificate chain from the Certificate Authority. This file is used to
+                                                validate the certificate presented by the mongod/mongos instance
+  --tlsCertificateKeyFile <path>                Specifies the location of a local .pem file that contains either the
+                                                client's TLS/SSL certificate and key
+  -h, --help                                    display help for command
 ```
 
 Example:
@@ -99,6 +117,15 @@ Sync indexes from a recommended dump with a target MongoDB instance. The command
 Options:
   -p, --product <product>                       Codefresh product: classic | gitops
   -u, --uri <uri>                               MongoDB URI
+  --tls                                         Use TLS for the connection. If you are using a self-signed certificate,
+                                                you may also need to specify "--tlsCAFile" and/or
+                                                "--tlsCertificateKeyFile" (default: false)
+  --tlsInsecure                                 Allow insecure TLS connections (do not validate CA) (default: false)
+  --tlsCAFile <path>                            Specifies the location of a local .pem file that contains the root
+                                                certificate chain from the Certificate Authority. This file is used to
+                                                validate the certificate presented by the mongod/mongos instance
+  --tlsCertificateKeyFile <path>                Specifies the location of a local .pem file that contains either the
+                                                client's TLS/SSL certificate and key
   -f --force                                    Create indexes even on heavily populated collections, which may take a while
   -m --db-map [dump-db-name=target-db-name...]  Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases (default: ["google_production=codefresh","chart-manager=charts-manager","kubernetes-monitor=k8s-monitor"])
   -h, --help                                    display help for command

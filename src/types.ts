@@ -1,4 +1,4 @@
-import type { Document, IndexDescription } from 'mongodb';
+import type { Document, IndexDescription, MongoClientOptions } from 'mongodb';
 
 export type Product = 'classic' | 'gitops';
 
@@ -61,24 +61,24 @@ export interface DatabaseStats {
 }
 
 // Options
-export interface SyncOptions {
+export interface SyncOptions extends Partial<MongoClientOptions> {
   uri: string;
   product: Product;
   dbMap?: DbMapRaw;
   force?: boolean;
 }
 
-export interface CompareOptions {
+export interface CompareOptions extends Partial<MongoClientOptions> {
   uri: string;
   product: Product;
   dbMap?: DbMapRaw;
 }
 
-export interface StatsOptions {
+export interface StatsOptions extends Partial<MongoClientOptions> {
   uri: string;
 }
 
-export interface DumpOptions {
+export interface DumpOptions extends Partial<MongoClientOptions> {
   uri: string;
   path: string;
 }
