@@ -2,6 +2,8 @@
 
 ## Usage
 
+Please check [Releases](https://github.com/codefresh-io/index-alignment/releases) for the relevant version. Version suffix match the corresponding on-premise version, ie this tool `v1.0.2-2.8` is for Codefresh On-prem `v2.8`.
+
 ```shell
 docker run quay.io/codefresh/index-alignment:<version> --help
 ```

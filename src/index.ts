@@ -32,7 +32,7 @@ program
 
 program
   .command('sync')
-  .description('Sync indexes from a recommended dump with a target MongoDB instance. The command will fail if it is required to create indexes on heavily populated collections and the `--force` flag has not been specified')
+  .description('[ ⚠️ Warning! Do not run this command against production. ] Sync indexes from a recommended dump with a target MongoDB instance. The command will fail if it is required to create indexes on heavily populated collections and the `--force` flag has not been specified')
   .requiredOption('-p, --product <product>', 'Codefresh product: classic | gitops')
   .requiredOption('-u, --uri <uri>', 'MongoDB URI')
   .option('-f --force', 'Create indexes even on heavily populated collections, which may take a while')
