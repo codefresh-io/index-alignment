@@ -1,10 +1,13 @@
 import { MongoClient, MongoClientOptions } from 'mongodb';
+import { logger } from './logger.js';
 
 export const getMongoClient = (options: Partial<MongoClientOptions> & { uri: string }) => {
-  return new MongoClient(options.uri, {
+  const clientOptions = {
     tls: options.tls,
     tlsInsecure: options.tlsInsecure,
     tlsCAFile: options.tlsCAFile,
     tlsCertificateKeyFile: options.tlsCertificateKeyFile,
-  });
+  } satisfies MongoClientOptions;
+  logger.stderr(`The following options will be used for the MongoDB connection: ${JSON.stringify(clientOptions, null, 2)}`);
+  return new MongoClient(options.uri, clientOptions);
 };

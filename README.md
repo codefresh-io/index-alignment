@@ -21,7 +21,21 @@ Commands:
   help [command]     display help for command
 ```
 
+### TLS
 
+To use, TLS certificates must be mounted into the container. Please read the help for the corresponding command to learn more about the available TLS flags.
+
+```shell
+docker run \
+  --volume </host/path/to/cert.pem>:/tmp/cert.pem \
+  --volume </host/path/to/ca.pem>:/tmp/ca.pem \
+  quay.io/codefresh/index-alignment:<version> \
+  stats \
+  --tls \
+  --tlsCertificateKeyFile="/tmp/cert.pem" \
+  --tlsCAFile="/tmp/ca.pem" \
+  --uri=<mongo-uri>
+```
 
 ### Commands
 
