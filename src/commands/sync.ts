@@ -1,7 +1,8 @@
-import { Collection, Db, MongoClient } from 'mongodb';
+import type { Collection, Db } from 'mongodb';
 import { compareDump } from '../compare-dump.js';
 import { heavyCollections, indexLimitPerCollection } from '../config.js';
 import { getCollectionIndexes } from '../get-indexes.js';
+import { getMongoClient } from '../get-mongo-client.js';
 import { logger } from '../logger.js';
 import type { CollectionDiff, DatabaseDiff, Index, SyncOptions } from '../types.js';
 import { getTargetToDumpDb } from '../utils.js';
@@ -134,7 +135,7 @@ const syncDatabase = async (db: Db, diff: DatabaseDiff, options: SyncOptions): P
 export const sync = async (options: SyncOptions): Promise<void> => {
   logger.stderr(`Syncing indexes for "${options.product}"`);
   const diff = await compareDump(options);
-  const client = new MongoClient(options.uri);
+  const client = getMongoClient(options);
   await client.connect();
   for (const [databaseName, databaseDiff] of Object.entries(diff.databases)) {
     const db = client.db(databaseName);
