@@ -1,11 +1,10 @@
-import { MongoClient } from 'mongodb';
 import { getAllIndexes } from './get-indexes.js';
+import { getMongoClient } from './get-mongo-client.js';
 import { isIndexEqual } from './is-index-equal.js';
 import { shouldIgnoreIndexInDump } from './overrides/should-ignore-index-in-dump.js';
-
+import { shouldIgnoreIndexInTarget } from './overrides/should-ignore-index-in-target.js';
 import { readDump } from './read-dump.js';
 import type { CollectionDiff, CollectionIndexes, CompareOptions, DatabaseDiff, DatabaseIndexes, DbMapRaw, FullDiff } from './types.js';
-import { shouldIgnoreIndexInTarget } from './overrides/should-ignore-index-in-target.js';
 import { getTargetToDumpDb } from './utils.js';
 
 const compareCollections = (desired: CollectionIndexes, actual?: CollectionIndexes, dbMap?: DbMapRaw): CollectionDiff => {
@@ -47,9 +46,10 @@ const compareDatabases = (desired: DatabaseIndexes, actual?: DatabaseIndexes, db
   return dbDiff;
 };
 
-export const compareDump = async ({ product, uri, dbMap }: CompareOptions): Promise<FullDiff> => {
+export const compareDump = async (options: CompareOptions): Promise<FullDiff> => {
+  const { product, dbMap } = options;
   const desired = await readDump(product, dbMap);
-  const client = new MongoClient(uri);
+  const client = getMongoClient(options);
   await client.connect();
   const actual = await getAllIndexes(client);
 
