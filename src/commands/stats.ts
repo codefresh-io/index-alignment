@@ -1,4 +1,5 @@
-import { Collection, Db, Document, MongoClient } from 'mongodb';
+import type { Collection, Db, Document, MongoClient } from 'mongodb';
+import { getMongoClient } from '../get-mongo-client.js';
 import { logger } from '../logger.js';
 import type { CollectionStats, DatabaseStats, StatsOptions } from '../types.js';
 
@@ -74,10 +75,9 @@ export const getAllStats = async (client: MongoClient): Promise<unknown> => {
 };
 
 export const stats = async (options: StatsOptions): Promise<void> => {
-  const { uri } = options;
   logger.stderr('Reading MongoDB stats. Only databases and collections with authorized access will be covered');
 
-  const client = new MongoClient(uri);
+  const client = getMongoClient(options);
   await client.connect();
   logger.stderr('Connected to MongoDB');
 
