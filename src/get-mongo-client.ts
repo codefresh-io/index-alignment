@@ -7,6 +7,7 @@ export const getMongoClient = (options: Partial<MongoClientOptions> & { uri: str
     tlsInsecure: options.tlsInsecure,
     tlsCAFile: options.tlsCAFile,
     tlsCertificateKeyFile: options.tlsCertificateKeyFile,
+    tlsCertificateKeyFilePassword: options.tlsCertificateKeyFilePassword,
   } satisfies MongoClientOptions;
   logger.stderr(`The following options will be used for the MongoDB connection: ${JSON.stringify(clientOptions, null, 2)}`);
   return new MongoClient(options.uri, clientOptions);

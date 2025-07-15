@@ -63,6 +63,7 @@ Options:
                                                 validate the certificate presented by the mongod/mongos instance
   --tlsCertificateKeyFile <path>                Specifies the location of a local .pem file that contains either the
                                                 client's TLS/SSL certificate and key
+  --tlsCertificateKeyFilePassword <password>    Specifies the password to de-crypt the tlsCertificateKeyFile
   -m --db-map [dump-db-name=target-db-name...]  Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases (default: ["google_production=codefresh","chart-manager=charts-manager","kubernetes-monitor=k8s-monitor"])
   -h, --help                                    display help for command
 ```
@@ -108,6 +109,7 @@ Options:
                                                 validate the certificate presented by the mongod/mongos instance
   --tlsCertificateKeyFile <path>                Specifies the location of a local .pem file that contains either the
                                                 client's TLS/SSL certificate and key
+  --tlsCertificateKeyFilePassword <password>    Specifies the password to de-crypt the tlsCertificateKeyFile
   -h, --help                                    display help for command
 ```
 
@@ -140,6 +142,7 @@ Options:
                                                 validate the certificate presented by the mongod/mongos instance
   --tlsCertificateKeyFile <path>                Specifies the location of a local .pem file that contains either the
                                                 client's TLS/SSL certificate and key
+  --tlsCertificateKeyFilePassword <password>    Specifies the password to de-crypt the tlsCertificateKeyFile
   -f --force                                    Create indexes even on heavily populated collections, which may take a while
   -m --db-map [dump-db-name=target-db-name...]  Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases (default: ["google_production=codefresh","chart-manager=charts-manager","kubernetes-monitor=k8s-monitor"])
   -h, --help                                    display help for command
