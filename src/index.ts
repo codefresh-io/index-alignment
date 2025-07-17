@@ -28,6 +28,10 @@ program
     '--tlsCertificateKeyFile <path>',
     `Specifies the location of a local .pem file that contains either the client's TLS/SSL certificate and key`,
   )
+  .option(
+    '--tlsCertificateKeyFilePassword <password>',
+    'Specifies the password to de-crypt the tlsCertificateKeyFile',
+  )
   .action(dumpAllIndexes);
 
 program
@@ -51,6 +55,10 @@ program
   .option(
     '--tlsCertificateKeyFile <path>',
     `Specifies the location of a local .pem file that contains either the client's TLS/SSL certificate and key`,
+  )
+  .option(
+    '--tlsCertificateKeyFilePassword <password>',
+    'Specifies the password to de-crypt the tlsCertificateKeyFile',
   )
   .action(stats);
 
@@ -76,6 +84,10 @@ program
   .option(
     '--tlsCertificateKeyFile <path>',
     `Specifies the location of a local .pem file that contains either the client's TLS/SSL certificate and key`,
+  )
+  .option(
+    '--tlsCertificateKeyFilePassword <password>',
+    'Specifies the password to de-crypt the tlsCertificateKeyFile',
   )
   .option(
     '-m --db-map [dump-db-name=target-db-name...]',
@@ -106,6 +118,10 @@ program
   .option(
     '--tlsCertificateKeyFile <path>',
     `Specifies the location of a local .pem file that contains either the client's TLS/SSL certificate and key`,
+  )
+  .option(
+    '--tlsCertificateKeyFilePassword <password>',
+    'Specifies the password to de-crypt the tlsCertificateKeyFile',
   )
   .option('-f --force', 'Create indexes even on heavily populated collections, which may take a while')
   .option(
