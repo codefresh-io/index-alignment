@@ -1,5 +1,6 @@
 import { deepStrictEqual } from 'node:assert';
 import type { Index } from './types.js';
+import { CollationOptions, Document } from 'mongodb';
 
 /**
  * Compare two indexes to check if they are equal.
@@ -20,16 +21,53 @@ import type { Index } from './types.js';
  *
  * - If both `key` and options (except for `name`) are equal, the indexes are considered equal.
  */
+
+const defaultCollation: CollationOptions = {
+  locale: 'en_US',
+  caseLevel: false,
+  caseFirst: 'off',
+  strength: 1,
+  numericOrdering: false,
+  alternate: 'non-ignorable',
+  maxVariable: 'punct',
+  normalization: false,
+  backwards: false,
+};
+
+function isDefaultCollation(collation: Document | undefined): boolean {
+  if (!collation) return false;
+
+  const collationEntries = Object.entries(collation);
+  const defaultEntries = Object.entries(defaultCollation);
+
+  if (collationEntries.length !== defaultEntries.length) return false;
+
+  for (const [key, value] of collationEntries) {
+    if (defaultCollation[key as keyof CollationOptions] !== value) return false;
+  }
+
+  return true;
+}
+
 export const isIndexEqual = (a: Index, b: Index): boolean => {
   const aKey = a.key;
   const aOptions = { ...a, key: undefined, name: undefined };
   const bKey = b.key;
   const bOptions = { ...b, key: undefined, name: undefined };
   const isKeyEqual = JSON.stringify(aKey) === JSON.stringify(bKey);
+
+  if (isDefaultCollation(aOptions.collation)) delete aOptions.collation;
+  if (isDefaultCollation(bOptions.collation)) delete bOptions.collation;
+
   try {
     deepStrictEqual(aOptions, bOptions);
     return isKeyEqual;
-  } catch {
+  } catch (e: any) {
+    console.log('Index options differ:', {
+      aOptions,
+      bOptions,
+      diff: e.message,
+    });
     return false;
   }
 };
