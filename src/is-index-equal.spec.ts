@@ -102,4 +102,50 @@ describe('isIndexEqual', () => {
       expect(isIndexEqual(input.a, input.b)).toBe(false);
     });
   });
+
+  it('should return true when keys match and collation is default', () => {
+    const indexA = {
+      key: { a: 1 },
+      collation: {
+        locale: 'en_US',
+        caseLevel: false,
+        caseFirst: 'off',
+        strength: 1,
+        numericOrdering: false,
+        alternate: 'non-ignorable',
+        maxVariable: 'punct',
+        normalization: false,
+        backwards: false,
+      },
+    };
+
+    const indexB = {
+      key: { a: 1 },
+    };
+
+    expect(isIndexEqual(indexA, indexB)).toBe(true);
+  });
+
+  it('should return false when keys match but collation is not default', () => {
+    const indexA = {
+      key: { a: 1 },
+      collation: {
+        locale: 'en_US',
+        caseLevel: false,
+        caseFirst: 'off',
+        strength: 2,
+        numericOrdering: false,
+        alternate: 'non-ignorable',
+        maxVariable: 'punct',
+        normalization: false,
+        backwards: false,
+      },
+    };
+
+    const indexB = {
+      key: { a: 1 },
+    };
+
+    expect(isIndexEqual(indexA, indexB)).toBe(false);
+  });
 });
