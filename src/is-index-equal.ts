@@ -62,12 +62,7 @@ export const isIndexEqual = (a: Index, b: Index): boolean => {
   try {
     deepStrictEqual(aOptions, bOptions);
     return isKeyEqual;
-  } catch (e: any) {
-    console.log('Index options differ:', {
-      aOptions,
-      bOptions,
-      diff: e.message,
-    });
+  } catch {
     return false;
   }
 };
