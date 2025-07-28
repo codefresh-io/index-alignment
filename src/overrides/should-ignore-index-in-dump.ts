@@ -1,5 +1,12 @@
 import { isIndexEqual } from '../is-index-equal.js';
-import type { CollectionName, DatabaseName, IgnoreInAllCollections, IgnoreList, Index } from '../types.js';
+import type {
+    CollectionName,
+    CompareOptions,
+    DatabaseName,
+    IgnoreInAllCollections,
+    IgnoreList,
+    Index
+} from '../types.js';
 
 // TODO: Verify unique indexes, they should probably be ignored for now.
 
@@ -212,9 +219,9 @@ const ignoreList: IgnoreList = {
   },
 };
 
-export const shouldIgnoreIndexInDump = (dumpDbName: DatabaseName, collectionName: CollectionName, dumpIndex: Index): boolean => {
+export const shouldIgnoreIndexInDump = (dumpDbName: DatabaseName, collectionName: CollectionName, dumpIndex: Index, options?: CompareOptions): boolean => {
   // Check if the index should be ignored in all collections
-  if (ignoreInAllCollections.some(ignore => isIndexEqual(ignore, dumpIndex))) {
+  if (ignoreInAllCollections.some(ignore => isIndexEqual(ignore, dumpIndex, options?.includeCollations))) {
     return true;
   }
 
@@ -226,7 +233,7 @@ export const shouldIgnoreIndexInDump = (dumpDbName: DatabaseName, collectionName
   }
 
   // Check if the index is in the ignore list for the specific collection
-  if (ignoreCollection?.indexes.some(ignore => isIndexEqual(ignore, dumpIndex))) {
+  if (ignoreCollection?.indexes.some(ignore => isIndexEqual(ignore, dumpIndex, options?.includeCollations))) {
     return true;
   }
 
@@ -235,7 +242,7 @@ export const shouldIgnoreIndexInDump = (dumpDbName: DatabaseName, collectionName
     ...dumpIndex,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expireAfterSeconds: 'ANY' as any,
-  }))) {
+  }, options?.includeCollations))) {
     return true;
   }
 

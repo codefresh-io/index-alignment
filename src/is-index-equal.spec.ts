@@ -12,13 +12,13 @@ describe('isIndexEqual', () => {
     it('should return true', () => {
       const a = { key: { a: 1 } };
       const b = { key: { a: 1 } };
-      expect(isIndexEqual(a, b)).toBe(true);
+      expect(isIndexEqual(a, b, false)).toBe(true);
     });
 
     it('should ignore index names', () => {
       const a = { name: 'index1', key: { a: 1 } };
       const b = { name: 'index2', key: { a: 1 } };
-      expect(isIndexEqual(a, b)).toBe(true);
+      expect(isIndexEqual(a, b, false)).toBe(true);
     });
 
     it.each([
@@ -56,7 +56,7 @@ describe('isIndexEqual', () => {
       },
     ] satisfies TestCase[])('should ignore order of non-key properties', (input) => {
       expect(JSON.stringify(input.a)).not.toEqual(JSON.stringify(input.b)); // validate testcase itself
-      expect(isIndexEqual(input.a, input.b)).toBe(true);
+      expect(isIndexEqual(input.a, input.b, false)).toBe(true);
     });
   });
 
@@ -64,13 +64,13 @@ describe('isIndexEqual', () => {
     it('should return false when keys are different', () => {
       const a = { key: { a: 1 } };
       const b = { key: { b: 1 } };
-      expect(isIndexEqual(a, b)).toBe(false);
+      expect(isIndexEqual(a, b, false)).toBe(false);
     });
 
     it('should ignore index names', () => {
       const a = { name: 'same', key: { a: 1 } };
       const b = { name: 'same', key: { b: 1 } };
-      expect(isIndexEqual(a, b)).toBe(false);
+      expect(isIndexEqual(a, b, false)).toBe(false);
     });
 
     it.each([
@@ -99,7 +99,7 @@ describe('isIndexEqual', () => {
     ] satisfies TestCase[])('should return false when keys are same, but options are different', (input) => {
       expect(JSON.stringify(input.a)).not.toEqual(JSON.stringify(input.b)); // validate testcase itself
       expect(JSON.stringify(input.a.key)).toEqual(JSON.stringify(input.b.key)); // validate testcase itself
-      expect(isIndexEqual(input.a, input.b)).toBe(false);
+      expect(isIndexEqual(input.a, input.b, false)).toBe(false);
     });
   });
 
@@ -123,7 +123,30 @@ describe('isIndexEqual', () => {
       key: { a: 1 },
     };
 
-    expect(isIndexEqual(indexA, indexB)).toBe(true);
+    expect(isIndexEqual(indexA, indexB, false)).toBe(true);
+  });
+
+  it('should return false when keys match and collation is default but includeCollation flag is true', () => {
+    const indexA = {
+      key: { a: 1 },
+      collation: {
+        locale: 'en_US',
+        caseLevel: false,
+        caseFirst: 'off',
+        strength: 1,
+        numericOrdering: false,
+        alternate: 'non-ignorable',
+        maxVariable: 'punct',
+        normalization: false,
+        backwards: false,
+      },
+    };
+
+    const indexB = {
+      key: { a: 1 },
+    };
+
+    expect(isIndexEqual(indexA, indexB, true)).toBe(false);
   });
 
   it('should return false when keys match but collation is not default', () => {
@@ -146,6 +169,6 @@ describe('isIndexEqual', () => {
       key: { a: 1 },
     };
 
-    expect(isIndexEqual(indexA, indexB)).toBe(false);
+    expect(isIndexEqual(indexA, indexB, false)).toBe(false);
   });
 });
