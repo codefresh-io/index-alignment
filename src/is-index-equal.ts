@@ -43,7 +43,7 @@ function isDefaultCollation(collation: Document | undefined): boolean {
  *
  * - If both `key` and options (except for `name`) are equal, the indexes are considered equal.
  *
- * `includeCollations` parameter allows to include collation options in the comparison for gitops.
+ * `options.compareGitopsCollations` parameter allows to include collation options in the comparison for gitops.
  * This check is temporary disabled by default due to a misalignment between production and on-prem environments.
  * ({@link https://codefresh-io.atlassian.net/browse/CR-29948})
  */
