@@ -14,7 +14,7 @@ const compareCollections = (desired: CollectionIndexes, actual?: CollectionIndex
     // Skip indexes that should be ignored in the dump
     if (shouldIgnoreIndexInDump(dumpDbName, desired.collectionName, desiredIndex, options)) return false;
 
-    const match = actual?.indexes.find(actualIndex => isIndexEqual(desiredIndex, actualIndex, options?.includeCollations));
+    const match = actual?.indexes.find(actualIndex => isIndexEqual(desiredIndex, actualIndex, options));
     return !match;
   });
 
@@ -22,7 +22,7 @@ const compareCollections = (desired: CollectionIndexes, actual?: CollectionIndex
     // Skip indexes that should be ignored in the target
     if (shouldIgnoreIndexInTarget(dumpDbName, actual.collectionName, actualIndex, options)) return false;
 
-    const match = desired.indexes.find(desiredIndex => isIndexEqual(desiredIndex, actualIndex, options?.includeCollations));
+    const match = desired.indexes.find(desiredIndex => isIndexEqual(desiredIndex, actualIndex, options));
     return !match;
   });
 
