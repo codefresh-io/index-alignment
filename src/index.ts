@@ -94,6 +94,7 @@ program
     'Map the databases in the dump with the target databases. We have our own naming convention for the production databases, but it is up to the customers to name their databases',
     defaultDbMap,
   )
+  .option('--compareGitopsCollations', 'Compare collations for GitOps product. Only takes effect if --product=gitops', false)
   .action(compare);
 
 program

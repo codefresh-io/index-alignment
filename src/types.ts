@@ -72,6 +72,7 @@ export interface CompareOptions extends Partial<MongoClientOptions> {
   uri: string;
   product: Product;
   dbMap?: DbMapRaw;
+  compareGitopsCollations?: boolean;
 }
 
 export interface StatsOptions extends Partial<MongoClientOptions> {
