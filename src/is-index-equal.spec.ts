@@ -102,4 +102,96 @@ describe('isIndexEqual', () => {
       expect(isIndexEqual(input.a, input.b)).toBe(false);
     });
   });
+
+  it('should return true when keys match and collation is default (for gitops)', () => {
+    const indexA = {
+      key: { a: 1 },
+      collation: {
+        locale: 'en_US',
+        caseLevel: false,
+        caseFirst: 'off',
+        strength: 1,
+        numericOrdering: false,
+        alternate: 'non-ignorable',
+        maxVariable: 'punct',
+        normalization: false,
+        backwards: false,
+      },
+    };
+
+    const indexB = {
+      key: { a: 1 },
+    };
+
+    expect(isIndexEqual(indexA, indexB, { product: 'gitops', uri: '' })).toBe(true);
+  });
+
+  it('should return false when keys match and collation is default (for classic)', () => {
+    const indexA = {
+      key: { a: 1 },
+      collation: {
+        locale: 'en_US',
+        caseLevel: false,
+        caseFirst: 'off',
+        strength: 1,
+        numericOrdering: false,
+        alternate: 'non-ignorable',
+        maxVariable: 'punct',
+        normalization: false,
+        backwards: false,
+      },
+    };
+
+    const indexB = {
+      key: { a: 1 },
+    };
+
+    expect(isIndexEqual(indexA, indexB, { product: 'classic', uri: '' })).toBe(false);
+  });
+
+  it('should return false when keys match and collation is default but compareGitopsCollations flag is true', () => {
+    const indexA = {
+      key: { a: 1 },
+      collation: {
+        locale: 'en_US',
+        caseLevel: false,
+        caseFirst: 'off',
+        strength: 1,
+        numericOrdering: false,
+        alternate: 'non-ignorable',
+        maxVariable: 'punct',
+        normalization: false,
+        backwards: false,
+      },
+    };
+
+    const indexB = {
+      key: { a: 1 },
+    };
+
+    expect(isIndexEqual(indexA, indexB, { product: 'gitops', uri: '', compareGitopsCollations: true })).toBe(false);
+  });
+
+  it('should return false when keys match but collation is not default', () => {
+    const indexA = {
+      key: { a: 1 },
+      collation: {
+        locale: 'en_US',
+        caseLevel: false,
+        caseFirst: 'off',
+        strength: 2,
+        numericOrdering: false,
+        alternate: 'non-ignorable',
+        maxVariable: 'punct',
+        normalization: false,
+        backwards: false,
+      },
+    };
+
+    const indexB = {
+      key: { a: 1 },
+    };
+
+    expect(isIndexEqual(indexA, indexB, { product: 'gitops', uri: '' })).toBe(false);
+  });
 });

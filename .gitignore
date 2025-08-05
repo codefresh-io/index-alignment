@@ -132,3 +132,7 @@ dist
 !indexes/**
 
 .DS_Store
+
+#Webstorm
+.idea/
+
