@@ -161,6 +161,31 @@
         "_id": 1
       },
       "name": "_id_"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "application.release.appVersions.appVersion": 1
+      },
+      "name": "accountId_1_application.release.appVersions.appVersion_1"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "application.runtime": 1,
+        "application.deployedTo.namespace": 1,
+        "application.deployedTo.name": 1
+      },
+      "name": "accountId_1_application.runtime_1_application.deployedTo.namespace_1_application.deployedTo.name_1"
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "application.runtime": 1,
+        "application.deployedTo.namespace": 1,
+        "application.deployedTo.server": 1
+      },
+      "name": "accountId_1_application.runtime_1_application.deployedTo.namespace_1_application.deployedTo.server_1"
     }
   ]
 }

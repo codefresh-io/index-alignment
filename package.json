@@ -1,6 +1,6 @@
 {
   "name": "index-alignment",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "main": "dist/index.js",
   "private": true,
   "type": "module",
@@ -19,8 +19,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:cov": "vitest run --coverage",
-    "dump:classic": "rimraf ./indexes/classic && node ./dist/index.js dump -p ./indexes/classic -u $MONGO_V1_URI",
-    "dump:gitops": "rimraf ./indexes/gitops && node ./dist/index.js dump -p ./indexes/gitops -u $MONGO_V2_URI",
+    "dump:classic": "rimraf ./indexes/classic && node ./dist/index.js dump -p ./indexes/classic -u $MONGO_V1_URI --tls",
+    "dump:gitops": "rimraf ./indexes/gitops && node ./dist/index.js dump -p ./indexes/gitops -u $MONGO_V2_URI --tls",
     "dump": "yarn dump:classic && yarn dump:gitops"
   },
   "engines": {
