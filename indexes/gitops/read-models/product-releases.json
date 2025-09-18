@@ -100,6 +100,13 @@
         "_id": 1
       },
       "name": "_id_"
+    },
+    {
+      "key": {
+        "createdAt": 1
+      },
+      "name": "createdAt_1",
+      "expireAfterSeconds": 23328000
     }
   ]
 }
