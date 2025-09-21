@@ -1,0 +1,47 @@
+{
+  "databaseName": "google_production",
+  "collectionName": "executioncontexts",
+  "indexes": [
+    {
+      "key": {
+        "account": 1,
+        "tags": 1,
+        "_id": -1
+      },
+      "name": "account_1_tags_1__id_-1"
+    },
+    {
+      "key": {
+        "account": 1,
+        "name": 1,
+        "_id": -1
+      },
+      "name": "account_1_name_1__id_-1"
+    },
+    {
+      "key": {
+        "account": 1,
+        "name": 1
+      },
+      "name": "account_1_name_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "account": 1,
+        "accountDefault": -1
+      },
+      "name": "account_1_accountDefault_-1",
+      "unique": true,
+      "partialFilterExpression": {
+        "accountDefault": true
+      }
+    },
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}
