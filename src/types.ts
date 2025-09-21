@@ -61,25 +61,29 @@ export interface DatabaseStats {
 }
 
 // Options
-export interface SyncOptions extends Partial<MongoClientOptions> {
+type MongoOptions = Pick<MongoClientOptions, 'tls' | 'tlsInsecure' | 'tlsCAFile' | 'tlsCertificateKeyFile' | 'tlsCertificateKeyFilePassword'>;
+
+export interface SyncOptions extends MongoOptions {
   uri: string;
   product: Product;
+  version: string;
   dbMap?: DbMapRaw;
   force?: boolean;
 }
 
-export interface CompareOptions extends Partial<MongoClientOptions> {
+export interface CompareOptions extends MongoOptions {
   uri: string;
   product: Product;
+  version: string;
   dbMap?: DbMapRaw;
   compareGitopsCollations?: boolean;
 }
 
-export interface StatsOptions extends Partial<MongoClientOptions> {
+export interface StatsOptions extends MongoOptions {
   uri: string;
 }
 
-export interface DumpOptions extends Partial<MongoClientOptions> {
+export interface DumpOptions extends MongoOptions {
   uri: string;
   path: string;
 }

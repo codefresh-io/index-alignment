@@ -2,7 +2,7 @@
 
 ## Usage
 
-Please check [Releases](https://github.com/codefresh-io/index-alignment/releases) for the relevant version. Version suffix match the corresponding on-premise version, ie this tool `v1.0.2-2.8` is for Codefresh On-prem `v2.8`.
+Please check [Releases](https://github.com/codefresh-io/index-alignment/releases) for the latest available version.
 
 ```shell
 docker run quay.io/codefresh/index-alignment:<version> --help
@@ -39,6 +39,27 @@ docker run \
 
 ### Commands
 
+## `dump`
+
+Dump all indexes from a MongoDB instance.
+
+```
+Options:
+  -p, --path <path>                           Path to store index dump
+  -u, --uri <uri>                             MongoDB URI
+  -v, --version <version>                     On-prem version: 2.8 | 2.9
+  --tls                                       Use TLS for the connection. If you are using a self-signed certificate, you may also
+                                              need to specify "--tlsCAFile" and/or "--tlsCertificateKeyFile" (default: false)
+  --tlsInsecure                               Allow insecure TLS connections (do not validate CA) (default: false)
+  --tlsCAFile <path>                          Specifies the location of a local .pem file that contains the root certificate chain
+                                              from the Certificate Authority. This file is used to validate the certificate
+                                              presented by the mongod/mongos instance
+  --tlsCertificateKeyFile <path>              Specifies the location of a local .pem file that contains either the client's TLS/SSL
+                                              certificate and key
+  --tlsCertificateKeyFilePassword <password>  Specifies the password to de-crypt the tlsCertificateKeyFile
+  -h, --help                                  display help for command
+```
+
 ## `compare`
 
 Compare indexes from a target MongoDB instance with a recommended dump.
@@ -54,6 +75,7 @@ We recommend redirecting the output of `compare` command to JSON file.
 Options:
   -p, --product <product>                       Codefresh product: classic | gitops
   -u, --uri <uri>                               MongoDB URI
+  -v, --version <version>                       On-prem version: 2.8 | 2.9
   --tls                                         Use TLS for the connection. If you are using a self-signed certificate,
                                                 you may also need to specify "--tlsCAFile" and/or
                                                 "--tlsCertificateKeyFile" (default: false)
@@ -133,6 +155,7 @@ Sync indexes from a recommended dump with a target MongoDB instance. The command
 Options:
   -p, --product <product>                       Codefresh product: classic | gitops
   -u, --uri <uri>                               MongoDB URI
+  -v, --version <version>                       On-prem version: 2.8 | 2.9
   --tls                                         Use TLS for the connection. If you are using a self-signed certificate,
                                                 you may also need to specify "--tlsCAFile" and/or
                                                 "--tlsCertificateKeyFile" (default: false)
