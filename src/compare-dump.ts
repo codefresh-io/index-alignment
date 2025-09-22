@@ -48,7 +48,7 @@ const compareDatabases = (desired: DatabaseIndexes, actual?: DatabaseIndexes, db
 
 export const compareDump = async (options: CompareOptions): Promise<FullDiff> => {
   const { product, dbMap } = options;
-  const desired = await readDump(product, dbMap);
+  const desired = await readDump(product, dbMap, options.version);
   const client = getMongoClient(options);
   await client.connect();
   const actual = await getAllIndexes(client);

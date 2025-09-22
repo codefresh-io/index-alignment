@@ -1,20 +1,29 @@
 import { readdir, readFile } from 'node:fs/promises';
 import { resolve } from 'node:path';
 import { cwd } from 'node:process';
+import { onpremVersions } from './config.js';
 import { logger } from './logger.js';
 import type { CollectionIndexes, DatabaseIndexes, DbMapRaw, Product } from './types.js';
 import { getDumpToTargetDb } from './utils.js';
 
-const DumpDirs: Record<Product, string> = {
-  classic: resolve(cwd(), 'indexes', 'classic'),
-  gitops: resolve(cwd(), 'indexes', 'gitops'),
-} as const;
+const getDumpDir = (product: Product, version: string): string => {
+  if (!onpremVersions.includes(version as typeof onpremVersions[number])) {
+    throw new Error(`Unsupported on-prem version: "${version}". Supported versions: "${onpremVersions.join(' | ')}"`);
+  }
 
-export const readDump = async (product: Product, dbMapRaw: DbMapRaw = []): Promise<DatabaseIndexes[]> => {
+  switch (product) {
+    case 'classic':
+      return resolve(cwd(), 'indexes', version, 'classic');
+    case 'gitops':
+      return resolve(cwd(), 'indexes', version, 'gitops');
+  }
+};
+
+export const readDump = async (product: Product, dbMapRaw: DbMapRaw = [], version: string): Promise<DatabaseIndexes[]> => {
   const dumpToTargetDb = getDumpToTargetDb(dbMapRaw);
 
   logger.stderr(`Reading desired indexes for ${product}`);
-  const pathToDump = DumpDirs[product];
+  const pathToDump = getDumpDir(product, version);
   const dirEnts = await readdir(pathToDump, { recursive: true, withFileTypes: true });
   const filePaths = dirEnts.reduce((acc, dirEnt) => {
     if (!dirEnt.isFile()) return acc;

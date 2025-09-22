@@ -26,3 +26,8 @@ export const defaultDbMap = [
   'chart-manager=charts-manager',
   'kubernetes-monitor=k8s-monitor',
 ];
+
+export const onpremVersions = [
+  '2.8',
+  '2.9',
+] as const;

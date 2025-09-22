@@ -3,12 +3,12 @@ import { compare } from './commands/compare.js';
 import { dumpAllIndexes } from './commands/dump-all-indexes.js';
 import { stats } from './commands/stats.js';
 import { sync } from './commands/sync.js';
-import { defaultDbMap } from './config.js';
+import { defaultDbMap, onpremVersions } from './config.js';
 
 program
   .command('dump')
-  .description('[Internal] Dump all indexes from a MongoDB instance')
-  .requiredOption('-p, --path <path>', 'Path to index dump')
+  .description('Dump all indexes from a MongoDB instance')
+  .requiredOption('-p, --path <path>', 'Path to store index dump')
   .requiredOption('-u, --uri <uri>', 'MongoDB URI')
   .option(
     '--tls',
@@ -67,6 +67,7 @@ program
   .description('Compare indexes from a target MongoDB instance with a recommended dump')
   .requiredOption('-p, --product <product>', 'Codefresh product: classic | gitops')
   .requiredOption('-u, --uri <uri>', 'MongoDB URI')
+  .requiredOption('-v, --version <version>', `On-prem version: ${onpremVersions.join(' | ')}`)
   .option(
     '--tls',
     `Use TLS for the connection. If you are using a self-signed certificate, you may also need to specify "--tlsCAFile" and/or "--tlsCertificateKeyFile"`,
@@ -102,6 +103,7 @@ program
   .description('[ ⚠️ Warning! Do not run this command against production. ] Sync indexes from a recommended dump with a target MongoDB instance. The command will fail if it is required to create indexes on heavily populated collections and the `--force` flag has not been specified')
   .requiredOption('-p, --product <product>', 'Codefresh product: classic | gitops')
   .requiredOption('-u, --uri <uri>', 'MongoDB URI')
+  .requiredOption('-v, --version <version>', `On-prem version: ${onpremVersions.join(' | ')}`)
   .option(
     '--tls',
     `Use TLS for the connection. If you are using a self-signed certificate, you may also need to specify "--tlsCAFile" and/or "--tlsCertificateKeyFile"`,
