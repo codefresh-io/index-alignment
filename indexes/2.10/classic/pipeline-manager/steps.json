@@ -1,0 +1,84 @@
+{
+  "databaseName": "pipeline-manager",
+  "collectionName": "steps",
+  "indexes": [
+    {
+      "key": {
+        "metadata.official": 1,
+        "_id": 1
+      },
+      "name": "metadata.official_1__id_1"
+    },
+    {
+      "key": {
+        "metadata.name": 1,
+        "metadata.version": 1
+      },
+      "name": "metadata.name_1_metadata.version_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "_id": 1
+      },
+      "name": "metadata.accountId_1__id_1"
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "metadata.latest": 1,
+        "metadata.official": -1,
+        "metadata.categories": 1,
+        "metadata.name": 1,
+        "_id": -1
+      },
+      "name": "metadata.accountId_1_metadata.latest_1_metadata.official_-1_metadata.categories_1_metadata.name_1__id_-1"
+    },
+    {
+      "key": {
+        "metadata.isPublic": 1,
+        "metadata.latest": 1,
+        "metadata.official": -1,
+        "metadata.categories": 1,
+        "metadata.name": 1,
+        "_id": -1
+      },
+      "name": "metadata.isPublic_1_metadata.latest_1_metadata.official_-1_metadata.categories_1_metadata.name_1__id_-1"
+    },
+    {
+      "key": {
+        "metadata.isPublic": 1,
+        "_id": 1
+      },
+      "name": "metadata.isPublic_1__id_1"
+    },
+    {
+      "key": {
+        "metadata.stage": 1,
+        "_id": 1
+      },
+      "name": "metadata.stage_1__id_1"
+    },
+    {
+      "key": {
+        "metadata.categories": 1,
+        "_id": 1
+      },
+      "name": "metadata.categories_1__id_1"
+    },
+    {
+      "key": {
+        "metadata.tags": 1,
+        "_id": 1
+      },
+      "name": "metadata.tags_1__id_1"
+    },
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}
