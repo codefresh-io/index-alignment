@@ -1,0 +1,12 @@
+{
+  "databaseName": "csdp-analytics",
+  "collectionName": "versions2",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}
