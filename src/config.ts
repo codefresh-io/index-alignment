@@ -30,4 +30,5 @@ export const defaultDbMap = [
 export const onpremVersions = [
   '2.8',
   '2.9',
+  '2.10',
 ] as const;
