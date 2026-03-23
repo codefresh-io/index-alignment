@@ -1,0 +1,12 @@
+{
+  "databaseName": "pipeline-manager",
+  "collectionName": "_yarik_test",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}

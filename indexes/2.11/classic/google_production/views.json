@@ -1,0 +1,67 @@
+{
+  "databaseName": "google_production",
+  "collectionName": "views",
+  "indexes": [
+    {
+      "key": {
+        "accountId": 1,
+        "entityType": 1,
+        "name": 1
+      },
+      "name": "accountId_1_entityType_1_name_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "account": 1,
+        "entityType": 1,
+        "name": 1
+      },
+      "name": "account_1_entityType_1_name_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "account": 1,
+        "tags": 1
+      },
+      "name": "account_1_tags_1"
+    },
+    {
+      "key": {
+        "account": 1,
+        "name": 1
+      },
+      "name": "account_1_name_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "account": 1,
+        "type": 1
+      },
+      "name": "account_1_type_1"
+    },
+    {
+      "key": {
+        "account": 1,
+        "groupKey": 1
+      },
+      "name": "account_1_groupKey_1"
+    },
+    {
+      "key": {
+        "account": 1,
+        "type": 1,
+        "groupKey": 1
+      },
+      "name": "account_1_type_1_groupKey_1"
+    },
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}
