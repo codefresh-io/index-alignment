@@ -1,0 +1,26 @@
+{
+  "databaseName": "google_production",
+  "collectionName": "apikeys",
+  "indexes": [
+    {
+      "key": {
+        "key": 1
+      },
+      "name": "key_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "subject": 1
+      },
+      "name": "subject_1",
+      "sparse": true
+    },
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "databaseName": "google_production",
+  "collectionName": "registryauthzs",
+  "indexes": [
+    {
+      "key": {
+        "account": 1
+      },
+      "name": "account_1"
+    },
+    {
+      "key": {
+        "user": 1
+      },
+      "name": "user_1"
+    },
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}
