@@ -1,0 +1,21 @@
+{
+  "databaseName": "context-manager",
+  "collectionName": "contexts",
+  "indexes": [
+    {
+      "key": {
+        "ownerType": 1,
+        "ownerId": 1,
+        "name": 1
+      },
+      "name": "ownerType_1_ownerId_1_name_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "databaseName": "pipeline-manager",
+  "collectionName": "pipelines",
+  "indexes": [
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "_id": 1
+      },
+      "name": "metadata.accountId_1__id_1"
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "metadata.name": 1
+      },
+      "name": "metadata.accountId_1_metadata.name_1",
+      "unique": true
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "metadata.executionContextId": 1
+      },
+      "name": "metadata.accountId_1_metadata.executionContextId_1"
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "metadata.project": 1
+      },
+      "name": "metadata.accountId_1_metadata.project_1"
+    },
+    {
+      "key": {
+        "spec.triggers.type": 1,
+        "spec.triggers.context": 1,
+        "spec.triggers.provider": 1,
+        "spec.triggers.repo": 1
+      },
+      "name": "spec.triggers.type_1_spec.triggers.context_1_spec.triggers.provider_1_spec.triggers.repo_1"
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "metadata.labelKeys": 1
+      },
+      "name": "metadata.accountId_1_metadata.labelKeys_1"
+    },
+    {
+      "key": {
+        "metadata.name": 1,
+        "spec.triggers.name": 1
+      },
+      "name": "metadata.name_1_spec.triggers.name_1"
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "metadata.deprecate.implicitGitCloneService.context": 1
+      },
+      "name": "metadata.accountId_1_metadata.deprecate.implicitGitCloneService.context_1"
+    },
+    {
+      "key": {
+        "metadata.accountId": 1,
+        "metadata.template.isTemplate": 1
+      },
+      "name": "metadata.accountId_1_metadata.template.isTemplate_1"
+    },
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    }
+  ]
+}
