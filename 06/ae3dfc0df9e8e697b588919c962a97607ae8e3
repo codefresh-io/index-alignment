@@ -1,0 +1,16 @@
+src/config.ts
+  h_e5037b46dfdc11 35
+package.json
+  h_e5037b46dfdc11 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.16",
+  "base_commit_sha": "06ae3dfc0df9e8e697b588919c962a97607ae8e3",
+  "prompts": {},
+  "humans": {
+    "h_e5037b46dfdc11": {
+      "author": "Zhenya Tikhonov <zhenya.tikhonov@octopus.com>"
+    }
+  }
+}
