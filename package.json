@@ -23,7 +23,7 @@
     "dump:gitops": "node ./dist/index.js dump -u $MONGO_V2_URI --tls"
   },
   "engines": {
-    "node": "^22"
+    "node": "^24"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
