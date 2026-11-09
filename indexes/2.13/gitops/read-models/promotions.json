@@ -1,0 +1,117 @@
+{
+  "databaseName": "read-models",
+  "collectionName": "promotions",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "productName": 1,
+        "triggerCommit.sha": 1
+      },
+      "name": "accountId_1_productName_1_triggerCommit.sha_1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "productName": 1,
+        "triggerCommitInfo.commitSha": 1
+      },
+      "name": "accountId_1_productName_1_triggerCommitInfo.commitSha_1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "productName": 1,
+        "createdAt": -1
+      },
+      "name": "accountId_1_productName_1_createdAt_-1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "createdAt": 1
+      },
+      "name": "createdAt_1",
+      "expireAfterSeconds": 15552000,
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "createdAt": -1,
+        "_id": -1
+      },
+      "name": "accountId_1_createdAt_-1__id_-1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    }
+  ]
+}

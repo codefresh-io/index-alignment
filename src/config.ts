@@ -33,4 +33,5 @@ export const onpremVersions = [
   '2.10',
   '2.11',
   '2.12',
+  '2.13',
 ] as const;

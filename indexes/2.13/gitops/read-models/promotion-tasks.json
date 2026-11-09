@@ -1,0 +1,99 @@
+{
+  "databaseName": "read-models",
+  "collectionName": "promotion-tasks",
+  "indexes": [
+    {
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "_id": 1
+      },
+      "name": "accountId_1__id_1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "metadata.promotionId": 1,
+        "metadata.environment": 1,
+        "createdAt": -1
+      },
+      "name": "accountId_1_metadata.promotionId_1_metadata.environment_1_createdAt_-1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "accountId": 1,
+        "runtimeName": 1,
+        "spec.phase": 1,
+        "createdAt": -1
+      },
+      "name": "accountId_1_runtimeName_1_spec.phase_1_createdAt_-1",
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    },
+    {
+      "key": {
+        "createdAt": 1
+      },
+      "name": "createdAt_1",
+      "expireAfterSeconds": 15552000,
+      "collation": {
+        "locale": "en_US",
+        "caseLevel": false,
+        "caseFirst": "off",
+        "strength": 1,
+        "numericOrdering": false,
+        "alternate": "non-ignorable",
+        "maxVariable": "punct",
+        "normalization": false,
+        "backwards": false
+      }
+    }
+  ]
+}
